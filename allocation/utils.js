@@ -60,14 +60,19 @@ async function logAmounts(addressArray){
   }
 }
 
-async function writeBALAllocation(addressArray, rewardAmount, totalBAL){
+async function writeBALAllocation(addressArray, totalBAL){
   let balAllocation = [];
+  let rewardAmount = BigNumber(0); // sum of all rewards paid out
   let i;
+  let j;
   for(i=0; i<addressArray.length; i++){
+    rewardAmount = rewardAmount.plus(addressArray[i][1]);
+  }
+  for(j=0; j<addressArray.length; j++){
       /* what % is it of rewardTotal */
-      console.log('total PRIME earned by ' + addressArray[i][0] + ': ' + (addressArray[i][1]).toString());
+      console.log('total PRIME earned by ' + addressArray[j][0] + ': ' + (addressArray[j][1]).toString());
       let rewardOver100 = rewardAmount.dividedBy(100);
-      let rewardPercentage = BigNumber(addressArray[i][1]).dividedBy(rewardOver100);
+      let rewardPercentage = BigNumber(addressArray[j][1]).dividedBy(rewardOver100);
       console.log('reward percentage' + ': ' + rewardPercentage.toString());
 
       /* what is this as a % of total BAL */
@@ -77,7 +82,7 @@ async function writeBALAllocation(addressArray, rewardAmount, totalBAL){
 
       /* push BAL allocation to array */
       let arr = [
-        addressArray[i][0],
+        addressArray[j][0],
         BigNumber(balReward)
       ]
       balAllocation.push(arr)

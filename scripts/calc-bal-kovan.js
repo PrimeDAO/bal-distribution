@@ -58,9 +58,9 @@ module.exports = async function(callback) {
     console.log('\ntotal rewards by account:');
     allocation.logAmounts(forBal);
 
-    /* work out as % of total reward -> write array for each with BAL % for MerkleDrop */
+    /* work out as % of sum of paid out rewards -> write array for each with BAL % for MerkleDrop */
     console.log('\n' + 'writing BAL allocation: ');
-    await allocation.writeBALAllocation(forBal, RewardAmount, BAL);
+    await allocation.writeBALAllocation(forBal, BAL);
 
 
   callback();
