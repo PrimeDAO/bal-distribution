@@ -45,12 +45,8 @@ async function addRewards(rewards, addressArray){
     for(i=0;i<rewards.length;i++){
       for(j=0;j<addressArray.length;j++){
         if(rewards[i].args.user === addressArray[j][0]){
-          // need to rewrite not push!
-          // console.log('found match: ' + rewards[i].args.user + ' --- ' + rewards[i].args.reward);
           let current = addressArray[j][1];
-          // console.log('current' + current)
           addressArray[j][1] = current.plus(rewards[i].args.reward)
-          // console.log(addressArray[j][1])
         }
       }
     }
