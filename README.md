@@ -10,6 +10,8 @@ It is comprised of scripts built atop the MStable MerkleDrop repo. These can be 
 These scripts calculate BAL allocation according to the same logic as MStable: the % of reward earned == the % of the total BAL allocation.
 
 To calculate the amount of BAL per account for deployed `StakingRewards` contracts:
+- Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` AND `ACCOUNT` parameters
+
 - Kovan (`0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3`):
 ```
 npm run calc-bal:kovan
