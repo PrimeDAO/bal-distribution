@@ -28,7 +28,7 @@ async function writeToArray(events){
         parsedAddresses.push(value);
     }
   }
-  console.log('\ncreated address array:')
+  // console.log('\ncreated address array:')
   for(i=0;i<parsedAddresses.length;i++){
     let obj = [
       parsedAddresses[i],
@@ -70,15 +70,15 @@ async function writeBALAllocation(addressArray, totalBAL){
   }
   for(j=0; j<addressArray.length; j++){
       /* what % is it of rewardTotal */
-      console.log('total PRIME earned by ' + addressArray[j][0] + ': ' + (addressArray[j][1]).toString());
+      // console.log('total PRIME earned by ' + addressArray[j][0] + ': ' + (addressArray[j][1]).toString());
       let rewardOver100 = rewardAmount.dividedBy(100);
       let rewardPercentage = BigNumber(addressArray[j][1]).dividedBy(rewardOver100);
-      console.log('reward percentage' + ': ' + rewardPercentage.toString());
+      // console.log('reward percentage' + ': ' + rewardPercentage.toString());
 
       /* what is this as a % of total BAL */
       let balOver100 = totalBAL.dividedBy(100);
       let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100);
-      console.log('BAL reward: ' + balReward.toString() + '\n')
+      // console.log('BAL reward: ' + balReward.toString() + '\n')
 
       /* push BAL allocation to array */
       let arr = [
@@ -87,10 +87,7 @@ async function writeBALAllocation(addressArray, totalBAL){
       ]
       balAllocation.push(arr)
   }
-  fs.writeFileSync('./kovanBalAllocation.json', JSON.stringify(balAllocation), (err) => {
-      if (err) throw err;
-  });
-  console.log('\n BAL allocation written to "kovanBalAllocation.json"');
+  return balAllocation;
 }
 
 module.exports = {

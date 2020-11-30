@@ -25,6 +25,7 @@ module.exports = async function(callback) {
     let parsedAddresses = [];
     let rewardsByAddress = [];
     let forBal = [];
+    let balAllocation = []; 
 
     /* these are loose for testing: we will have exact times at end */
     let now = await web3.eth.getBlockNumber();
@@ -60,7 +61,12 @@ module.exports = async function(callback) {
 
     /* work out as % of sum of paid out rewards -> write array for each with BAL % for MerkleDrop */
     console.log('\n' + 'writing BAL allocation: ');
-    await allocation.writeBALAllocation(forBal, BAL);
+    balAllocation = await allocation.writeBALAllocation(forBal, BAL);
+
+    fs.writeFileSync('./BalAllocation.json', JSON.stringify(balAllocation), (err) => {
+        if (err) throw err;
+    });
+    console.log('\n BAL allocation written to "BalAllocation.json"');
 
 
   callback();
