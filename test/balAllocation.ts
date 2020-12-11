@@ -120,8 +120,9 @@ contract('BAL allocation', (accounts) => {
                 allocatedBAL = allocatedBAL.plus(balAllocation[i][1]);
               }
 
-              // expect(allocatedBAL).to.equal(BAL);
-              // ROUND UP allocatedBAL? Not exact due to unequal division of rewardAmount in Staking contract 
+              expect(allocatedBAL).to.be.gte(BAL.minus(1));
+              expect(allocatedBAL).to.be.lt(BAL.plus(0.1));
+              // ROUND UP allocatedBAL? Not exact due to unequal division of rewardAmount in Staking contract
               console.log(allocatedBAL.toString())
               console.log(BAL.toString())
           });
