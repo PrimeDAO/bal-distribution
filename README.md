@@ -34,6 +34,7 @@ npm run init-merkledrop:kovan
 ```
 
 - To create a proof for your account:
+    - navigate to list of accounts and claim amounts (this needs to be hosted on IPFS)
     - Run the script (make tree for account, call getAccountBalanceProof function w this tree & log to console)
     - Go to the contract on etherscan
     - claim with the Proof

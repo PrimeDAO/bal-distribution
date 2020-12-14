@@ -29,7 +29,8 @@
     "prettify": "prettier --write test/*.ts test/**/*.ts types/generated/*.ts types/*.ts artifacts/*.ts",
     "flatten": "sol-merger \"./contracts/**/*.sol\" ./_flat",
     "calc-bal:kovan": "npx truffle exec ./scripts/calc-bal-kovan.js --network kovan",
-    "init-merkledrop:kovan": "npx truffle exec ./scripts/init-merkledrop-kovan.js --network kovan"
+    "init-merkledrop:kovan": "npx truffle exec ./scripts/init-merkledrop-kovan.js --network kovan",
+    "create-merkleroot:kovan": "npx ts-node create-merkleroot.ts"
   },
   "repository": {
     "type": "git",
@@ -43,12 +44,12 @@
     "@openzeppelin/test-helpers": "git+https://git@github.com/alsco77/openzeppelin-test-helpers.git",
     "@openzeppelin/upgrades": "2.7.2",
     "@truffle/hdwallet-provider": "^1.2.0",
-    "@typechain/truffle-v5": "^2.0.0",
+    "@typechain/truffle-v5": "^2.0.2",
     "@types/bn.js": "^4.11.6",
     "@types/chai": "^4.2.2",
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.5",
+    "@types/node": "^14.14.13",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/eslint-plugin-tslint": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
@@ -71,7 +72,7 @@
     "solc": "0.5.16",
     "solidity-coverage": "^0.7.9",
     "ts-node": "^8.10.2",
-    "typechain": "^2.0.0",
+    "typechain": "^2.0.1",
     "types-ethereumjs-util": "^0.0.8",
     "typescript": "^3.9.7",
     "web3": "^1.2.6",

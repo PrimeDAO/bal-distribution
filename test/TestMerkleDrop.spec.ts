@@ -89,6 +89,8 @@ contract('MerkleDrop', accounts => {
     balances: TrancheBalances
     totalAmount: BN
   }[]> => {
+    console.log(TrancheBalances)
+
     // Approval cumulative amount
     const cumulativeAmount = tranches.reduce(
       (prev, balances) =>

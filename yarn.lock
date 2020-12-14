@@ -781,7 +781,7 @@
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-"@typechain/truffle-v5@^2.0.0":
+"@typechain/truffle-v5@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@typechain/truffle-v5/-/truffle-v5-2.0.2.tgz#709a78ffb120f52c693818fea72e0b0d146c3454"
   integrity sha512-g4N2kfol1S3g/QUkmpzukCGZiKWUdXsSms1be/+W4+R0DPMz1Q/76tY+C6bD7G/KeLhkiDKcnZFmNVNcAgjIfQ==
@@ -891,10 +891,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.28.tgz#0e36d718a29355ee51cec83b42d921299200f6d9"
   integrity sha512-dzjES1Egb4c1a89C7lKwQh8pwjYmlOAG9dW1pBgxEk57tMrLnssOfEthz8kdkNaBd7lIqQx7APm5+mZ619IiCQ==
 
-"@types/node@^12.12.6", "@types/node@^12.6.1", "@types/node@^12.7.5":
+"@types/node@^12.12.6", "@types/node@^12.6.1":
   version "12.12.54"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.54.tgz#a4b58d8df3a4677b6c08bfbc94b7ad7a7a5f82d1"
   integrity sha512-ge4xZ3vSBornVYlDnk7yZ0gK6ChHf/CHB7Gl1I0Jhah8DDnEQqBzgohYG4FX4p81TNirSETOiSyn+y1r9/IR6w==
+
+"@types/node@^14.14.13":
+  version "14.14.13"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.13.tgz#9e425079799322113ae8477297ae6ef51b8e0cdf"
+  integrity sha512-vbxr0VZ8exFMMAjCW8rJwaya0dMCDyYW2ZRdTyjtrCvJoENMpdUHOT/eTzvgyA5ZnqRZ/sI0NwqAxNHKYokLJQ==
 
 "@types/node@^8.0.0":
   version "8.10.62"
@@ -8569,10 +8574,10 @@ type@^2.0.0:
   resolved "https://registry.yarnpkg.com/type/-/type-2.1.0.tgz#9bdc22c648cf8cf86dd23d32336a41cfb6475e3f"
   integrity sha512-G9absDWvhAWCV2gmF1zKud3OyC61nZDwWvBL2DApaVFogI07CprggiQAOOjvp2NRjYWFzPyu7vwtDrQFq8jeSA==
 
-typechain@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/typechain/-/typechain-2.0.0.tgz#62143b48cdf8f95a777f1b76617af077b2d44eee"
-  integrity sha512-O+hsAUwtBpqCfoq46Grm52OEdm0GBEu78LxrEzkkGdwUdCoCZpNb2HPzPoNB1MXiRnNhEOGMFyf05UbT2/bUEw==
+typechain@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/typechain/-/typechain-2.0.1.tgz#4fa91006d871e5805d41f265880603d0817b74d6"
+  integrity sha512-GVigpARnr2tV9L+8WecF5huK+qEonNgh+Vp9UR/EayoTV4+3G8Yabhvf+p/QJVOz3JLM4Eo3ERxYmjjJMRXc/A==
   dependencies:
     command-line-args "^4.0.7"
     debug "^4.1.1"
