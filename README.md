@@ -18,12 +18,7 @@ Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` param
 npm run calc-bal:kovan
 ```
 
-To create a tree containing all balances & seed these allocations in the contract:
-```
-
-```
-
-To seedNewAllocations in the contract (merkledrop on kovan at `0xaF8397fFdA7D912884412d811A0Ed09636257E62`, ttoken @ `0x5Aa14c3d684c48c723473128cfa0222553848216`):
+To create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0xaF8397fFdA7D912884412d811A0Ed09636257E62`, ttoken @ `0x5Aa14c3d684c48c723473128cfa0222553848216`):
 ```
 ```
 
