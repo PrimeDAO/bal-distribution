@@ -1,19 +1,19 @@
 /*global artifacts, web3, contract, before, it, context*/
 /*eslint no-undef: "error"*/
 
+const chai = require('chai');
 import { expect } from 'chai';
 const { constants, time, expectRevert, expectEvent } = require('@openzeppelin/test-helpers');
 const allocation = require('../allocation/utils.js');
 const contracts = require('../contractAddresses');
 const BigNumber = require('bignumber.js');
+const fs = require('fs'); 
 
 const StakingRewards = artifacts.require('StakingRewards');
 const TToken = artifacts.require('TToken');
 
 const { toWei } = web3.utils;
-
 const DECIMALS = 18;
-
 
 BigNumber.config({
     EXPONENTIAL_AT: [-100, 100],
@@ -115,21 +115,21 @@ contract('BAL allocation', (accounts) => {
               let forBal = await allocation.addRewards(rewards, rewardsByAddress);
               balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
+              fs.writeFileSync('./BalAllocation.json', JSON.stringify(balAllocation), (err) => {
+                  if (err) throw err;
+              });
+
               let i;
               for(i=0; i<balAllocation.length; i++){
                 allocatedBAL = allocatedBAL.plus(balAllocation[i][1]);
               }
 
-              expect(allocatedBAL).to.be.gte(BAL.minus(1));
-              expect(allocatedBAL).to.be.lt(BAL.plus(0.1));
-              // ROUND UP allocatedBAL? Not exact due to unequal division of rewardAmount in Staking contract
-              console.log(allocatedBAL.toString())
-              console.log(BAL.toString())
+              /* cannot expect exact equivalence due to fractional remaining reward in Staking contract */
+              expect(allocatedBAL.toNumber()).to.be.at.most(BAL.toNumber());
+              expect(allocatedBAL.toNumber()).to.be.at.least((BAL.minus(0.001)).toNumber());
+
+
           });
-      });
-      context('BAL merkledrop', async () => {
-          // make tree
-          // test claim
       });
   });
 

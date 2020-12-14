@@ -2,9 +2,7 @@ require('dotenv').config();
 const fs = require('fs');
 const BigNumber = require('bignumber.js');
 const contracts = require('../contractAddresses');
-
 const staking = artifacts.require('StakingRewards');
-
 const allocation = require('../allocation/utils.js');
 
 BigNumber.config({
@@ -25,7 +23,7 @@ module.exports = async function(callback) {
     let parsedAddresses = [];
     let rewardsByAddress = [];
     let forBal = [];
-    let balAllocation = []; 
+    let balAllocation = [];
 
     /* these are loose for testing: we will have exact times at end */
     let now = await web3.eth.getBlockNumber();

@@ -11,7 +11,7 @@ BigNumber.config({
 
 async function writeToArray(events){
   if(events.length == 0) {
-      console.log('\n no events in specified range for contract at ' + StakingRewards.address);
+      console.log('\n no events in specified range for contract');
       return;
   }
   let allAddresses = [];
