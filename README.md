@@ -11,19 +11,41 @@ These scripts calculate BAL allocation according to the same logic as MStable: t
 
 Users will have had to withdraw their rewards prior to the BAL distribution.
 
-To calculate the amount of BAL per account for deployed `StakingRewards` contracts:
-- Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` parameters
+- To calculate the amount of BAL per account for deployed `StakingRewards` contract on Kovan (stakingrewards @ `0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3`):
 
-- Kovan (`0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3`):
+Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` parameters & run:
 ```
 npm run calc-bal:kovan
 ```
 
-- Mainnet (`0xE25faBF901Be98099b0FD8C8b3827A4c69F909E4`):
-```
-npm run calc-bal:mainnet [ not functional yet ]
+To create a tree containing all balances & seed these allocations in the contract:
 ```
 
+```
+
+To seedNewAllocations in the contract (merkledrop on kovan at `0xaF8397fFdA7D912884412d811A0Ed09636257E62`, ttoken @ `0x5Aa14c3d684c48c723473128cfa0222553848216`):
+```
+```
+
+To create a proof of your claim to copy into etherscan to claim:
+```
+
+```
+
+As this is only happening once, the `tranche` param will always be `1`(?)
+
+- To create a proof for your account:
+    - Run the script (make tree for account, call getAccountBalanceProof function w this tree & log to console)
+    - Go to the contract on etherscan
+    - call `claimWeek` with the accoutbalanceProof
+
+### to do:
+  - write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)
+  - write script for making proof for user (see TestMerkleDrop spec file)
+  - kovan test
+  - verify contract on etherscan
+  - deploy Merkledrop to mainnet & verify
+  - documentation
 
 # Merkle-drop
 

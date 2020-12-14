@@ -25,10 +25,12 @@
     "./types/interfaces.d.ts",
     "./types/**/*.ts",
     "./test/*.ts",
+    "./scripts/*.ts",
     "./scripts/**/*.ts",
     "./test/**/*.ts",
     "./test-utils/*.ts",
     "./test-utils/**/*.ts",
-    "./buidler.config.ts"
+    "./buidler.config.ts",
+    "./*.ts"
   ]
 }

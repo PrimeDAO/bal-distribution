@@ -28,7 +28,8 @@
     "generate-typings": "rimraf ./types/generated && typechain --target 'truffle-v5' --outDir types/generated './build/contracts/*.json'",
     "prettify": "prettier --write test/*.ts test/**/*.ts types/generated/*.ts types/*.ts artifacts/*.ts",
     "flatten": "sol-merger \"./contracts/**/*.sol\" ./_flat",
-    "calc-bal:kovan": "npx truffle exec ./scripts/calc-bal-kovan.js --network kovan"
+    "calc-bal:kovan": "npx truffle exec ./scripts/calc-bal-kovan.js --network kovan",
+    "init-merkledrop:kovan": "npx truffle exec ./scripts/init-merkledrop-kovan.js --network kovan"
   },
   "repository": {
     "type": "git",
