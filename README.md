@@ -20,6 +20,7 @@ npm run calc-bal:kovan
 
 To create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0xaF8397fFdA7D912884412d811A0Ed09636257E62`, ttoken @ `0x5Aa14c3d684c48c723473128cfa0222553848216`):
 ```
+
 ```
 
 To create a proof of your claim to copy into etherscan to claim:
@@ -27,12 +28,10 @@ To create a proof of your claim to copy into etherscan to claim:
 
 ```
 
-As this is only happening once, the `tranche` param will always be `1`(?)
-
 - To create a proof for your account:
     - Run the script (make tree for account, call getAccountBalanceProof function w this tree & log to console)
     - Go to the contract on etherscan
-    - call `claimWeek` with the accoutbalanceProof
+    - claim with the Proof
 
 ### to do:
   - write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)
