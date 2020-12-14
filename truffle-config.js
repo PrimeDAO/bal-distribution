@@ -1,3 +1,7 @@
+require('ts-node/register')
+// OPTIONAL: Allows the use of tsconfig path mappings with ts-node
+//require('tsconfig-paths/register')
+
 require('dotenv').config();
 const Web3 = require("web3");
 const web3 = new Web3();
