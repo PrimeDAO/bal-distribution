@@ -2,6 +2,8 @@ require('dotenv').config();
 const fs = require('fs');
 const BigNumber = require('bignumber.js');
 const contracts = require('../contractAddresses');
+import { simpleToExactAmount } from '../test/utils/math'
+
 
 BigNumber.config({
     EXPONENTIAL_AT: [-100, 100],
@@ -77,7 +79,7 @@ async function writeBALAllocation(addressArray, totalBAL){
 
       /* what is this as a % of total BAL */
       let balOver100 = totalBAL.dividedBy(100);
-      let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100);
+      let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100).toFixed(0);
       console.log('BAL reward: ' + balReward.toString() + '\n')
 
       /* push BAL allocation to array */

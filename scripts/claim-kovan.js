@@ -1,8 +1,10 @@
 require('dotenv').config();
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
+const merkleproof = require('../merkleproof.json')
 const allocation = require('../allocation/balArray');
 const BigNumber = require('bignumber.js');
+const { toWei } = web3.utils;
 
 module.exports = async function(callback) {
 
@@ -11,46 +13,19 @@ module.exports = async function(callback) {
 
   /* for user to fill in */
   let account = allocation.allocation[1][0] // <-- account
-  let amount = (allocation.allocation[1][1]).toString(); // <-- amount
+  let amount = toWei('142'); // <-- amount
 
   try {
 
-    await TToken.mint(MerkleDropKovan.address, '142000000000000000000')
-
-    /* these are loose for testing: we will have exact times at end */
-    // let now = await web3.eth.getBlockNumber();
-    // let prev = now - BigNumber(60*60*24*30); // now - 1 month
-    //
-    // let tranches = await MerkleDropKovan.getPastEvents('TrancheAdded', {
-    //   fromBlock: prev,
-    //   toBlock: now
-    // })
-    //
-    // console.log(tranches)
-
-
-    // let verify = await MerkleDropKovan.verifyClaim(
-    //   account,
-    //   0,
-    //   '142000000000000000000',
-    //   [ '0x21bf475deca8618192e87c8a3a8f14af1dd77463e3a5ba3ef4fc5ee936c1a5ca' ]
-    // )
-
-    // if(verify === true){
-      // console.log('proof verified - claiming BAL...')
       console.log('claiming for tranche...')
       await MerkleDropKovan.claimWeek(
         account,
         0,
-        '142000000000000000000', // does this need to be balance toWei ?
-        [ '0x21bf475deca8618192e87c8a3a8f14af1dd77463e3a5ba3ef4fc5ee936c1a5ca' ]
+        amount,
+        merkleproof
       )
 
       console.log('...claim successful')
-      console.log('your new BAL balance: ' + (await TToken.balanceOf(account)).toString())
-    // } else {
-    //   console.log('proof is ' + verify)
-    // }
 
   } catch(error) {
     await console.log(error)

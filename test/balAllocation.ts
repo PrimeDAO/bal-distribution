@@ -24,6 +24,7 @@ BigNumber.config({
 contract('BAL allocation', (accounts) => {
   let stakeAmount = toWei('1000');
   let halfStake = toWei('500');
+  let quarterStake = toWei('250');
 
   let rewardAmount;
   let _initreward = (BigNumber(925 * 100 * 1000000000000000000)).toString(); // "92500000000000003145728"
@@ -38,7 +39,7 @@ contract('BAL allocation', (accounts) => {
   let balAllocation;
 
   let rewards;
-  const BAL = BigNumber(1000);
+  const BAL = BigNumber(100000000);
 
 
   before('!! deploy and setup', async () => {
@@ -68,16 +69,16 @@ contract('BAL allocation', (accounts) => {
 
               await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[1]});
               await stakingRewards.stake(stakeAmount, {from: accounts[1]});
-              await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[2]});
-              await stakingRewards.stake(stakeAmount, {from: accounts[2]});
-              await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[3]});
-              await stakingRewards.stake(stakeAmount, {from: accounts[3]});
+              await stakingToken.approve(stakingRewards.address, halfStake, {from:accounts[2]});
+              await stakingRewards.stake(halfStake, {from: accounts[2]});
+              await stakingToken.approve(stakingRewards.address, quarterStake, {from:accounts[3]});
+              await stakingRewards.stake(quarterStake, {from: accounts[3]});
               await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[4]});
               await stakingRewards.stake(stakeAmount, {from: accounts[4]});
-              await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[5]});
-              await stakingRewards.stake(stakeAmount, {from: accounts[5]});
-              await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[6]});
-              await stakingRewards.stake(stakeAmount, {from: accounts[6]});
+              await stakingToken.approve(stakingRewards.address, halfStake, {from:accounts[5]});
+              await stakingRewards.stake(halfStake, {from: accounts[5]});
+              await stakingToken.approve(stakingRewards.address, quarterStake, {from:accounts[6]});
+              await stakingRewards.stake(quarterStake, {from: accounts[6]});
               await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[7]});
               await stakingRewards.stake(stakeAmount, {from: accounts[7]});
               await stakingToken.approve(stakingRewards.address, stakeAmount, {from:accounts[8]});
@@ -115,10 +116,18 @@ contract('BAL allocation', (accounts) => {
               let forBal = await allocation.addRewards(rewards, rewardsByAddress);
               balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
+              fs.writeFileSync('./BalAllocation.json', JSON.stringify(balAllocation), (err) => {
+                  if (err) throw err;
+              });
+
+              let i;
+              for(i=0; i<balAllocation.length; i++){
+                allocatedBAL = allocatedBAL.plus(balAllocation[i][1]);
+              }
+
               /* cannot expect exact equivalence due to fractional remaining reward in Staking contract */
               expect(allocatedBAL.toNumber()).to.be.at.most(BAL.toNumber());
-              expect(allocatedBAL.toNumber()).to.be.at.least((BAL.minus(0.001)).toNumber());
-
+              expect(allocatedBAL.toNumber()).to.be.at.least((BAL.minus(BAL.dividedBy(100))).toNumber());
 
           });
       });

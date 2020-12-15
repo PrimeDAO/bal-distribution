@@ -95,11 +95,14 @@ async function makeProof() {
       tree,
       tranche,
       balances: {
-        [allocation[1][0]]: { balance },
+        [ allocation[1][0] ]: { balance },
       },
     },
   ] = await setup(TRANCHES.unclaimed)
   const proof = await getAccountBalanceProof(tree, allocation[1][0], balance)
+  fs.writeFile('./merkleproof.json', JSON.stringify(proof), (err) => {
+      if (err) throw err;
+  });
   console.log(balance.toString())
   console.log('proof: ' + proof);
 }

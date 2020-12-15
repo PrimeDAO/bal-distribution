@@ -27,7 +27,11 @@ copy the merkleroot into the `seedNewAllocations` function in `seedAllocations-k
 npm run seed-allocations:kovan
 ```
 
-Create a proof of your claim to copy into etherscan to verify & then claim:
+USERS:
+
+Look at IPFS upload of allocations
+
+Create a proof of your claim: enter your in place of <ADDRESS> in line 98 `create-proof.ts`. The function call parameters will be written to `FOR-CLAIM.json`
 ```
 npm run create-proof:kovan
 ```
@@ -53,14 +57,18 @@ npm run init-merkledrop:kovan
   - ~~write script for making proof for user (see TestMerkleDrop spec file)~~
   - kovan testing
     - ~~general~~
-    - redploy contracts & clean run-through: scripts
-    - verify contract on etherscan
+    - ~~redploy contracts & clean run-through: scripts~~
+    - ~~verify contract on etherscan~~
     - redploy contracts & clean run-through: etherscan
   - ~~general tidying up & optimization~~
-  - create list of arrays for `getTranche` to pass in dynamically
-  - tweak bal allocation script to round to whole numbers
+  - ~~tweak bal allocation script: whole numbers~~
+  - look into dynamic array creation
+  - ipfs upload for bal allocation
+  - proof: proper writing to file  
+  - write .sh script
   - deploy Merkledrop to mainnet & verify
   - documentation
+
 
 # Merkle-drop
 

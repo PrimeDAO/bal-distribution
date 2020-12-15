@@ -92,7 +92,7 @@ async function makeTree() {
   await setup(TRANCHES.unclaimed)
   console.log('merkleroot: ' + merkleroot);
 
-  fs.writeFile('./merkleroot.json', merkleroot, (err) => {
+  fs.writeFile('./merkleroot.json', JSON.stringify(merkleroot), (err) => {
       if (err) throw err;
   });
 }

@@ -30,7 +30,7 @@ module.exports = async function(callback) {
     let prev = now - BigNumber(60*60*24*30); // now - 1 month
 
     /* Reward & BAL total for testing */
-    const BAL = BigNumber(1000);
+    const BAL = BigNumber(100000000);
     const RewardAmount = BigNumber(await StakingRewards.initreward());
     console.log('reward amount: ' + RewardAmount);
 
