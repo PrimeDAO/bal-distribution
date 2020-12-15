@@ -58,7 +58,7 @@ const setup = async (
       const tranche = index.toString()
 
       const tree = createTreeWithAccounts(balances)
-      console.log(balances)
+      // console.log(balances)
       merkletree = tree;
       const merkleRoot = tree.hexRoot
       merkleroot = merkleRoot;
@@ -73,7 +73,6 @@ const setup = async (
         .filter(([, value]) => value.claimed)
         .map(([account, { balance }]) => {
           const proof = getAccountBalanceProof(tree, account, balance)
-          // return merkleDrop.claimWeek(account, tranche, balance, proof)
         })
       await Promise.all(claims)
 
@@ -84,45 +83,19 @@ const setup = async (
 
 const TRANCHES = {
   unclaimed: getTranche(
-    [allocation[0][0], '1000'],
-    [allocation[1][0], allocation[1][1]]
+    [allocation[0][0], allocation[0][1]],
+    [allocation[1][0], '142']
   )
 }
 
-
 async function makeTree() {
   await setup(TRANCHES.unclaimed)
-  // console.log(merkletree)
-  fs.writeFile('./merkletree.json', JSON.stringify(merkletree), (err) => {
+  console.log('merkleroot: ' + merkleroot);
+
+  fs.writeFile('./merkleroot.json', merkleroot, (err) => {
       if (err) throw err;
   });
-  fs.writeFile('./merkleroot', merkleroot, (err) => {
-      if (err) throw err;
-  });
 }
 
-// move to own file 
-async function makeProof() {
-  const [
-    {
-      tree,
-      tranche,
-      balances: {
-        [allocation[0][0]]: { balance },
-      },
-    },
-  ] = await setup(TRANCHES.unclaimed)
-  console.log(tree)
-  console.log(balance.toString())
-
-  // console.log(balance.toString())
-  const proof = await getAccountBalanceProof(tree, allocation[0][0], balance)
-  console.log(proof);
-}
-
-async function main() {
-  await makeTree();
-  await makeProof();
-}
-
-main()
+// console.log(allocation[0])
+makeTree();

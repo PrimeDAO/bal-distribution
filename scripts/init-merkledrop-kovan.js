@@ -6,8 +6,8 @@ const BigNumber = require('bignumber.js');
 
 module.exports = async function(callback) {
 
-  const MerkleDropKovan = await merkledrop.at('0xaF8397fFdA7D912884412d811A0Ed09636257E62');
-  const TToken = await ttoken.at('0x5Aa14c3d684c48c723473128cfa0222553848216');
+  const MerkleDropKovan = await merkledrop.at('0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B');
+  const TToken = await ttoken.at('0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6');
 
   try {
     console.log('initializing merkledrop');

@@ -6,7 +6,7 @@ const contracts = require('../contractAddresses');
 BigNumber.config({
     EXPONENTIAL_AT: [-100, 100],
     ROUNDING_MODE: BigNumber.ROUND_DOWN,
-    DECIMAL_PLACES: 18,
+    DECIMAL_PLACES: 0,
 });
 
 async function writeToArray(events){

@@ -18,14 +18,23 @@ Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` param
 npm run calc-bal:kovan
 ```
 
-Create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0xaF8397fFdA7D912884412d811A0Ed09636257E62`, ttoken @ `0x5Aa14c3d684c48c723473128cfa0222553848216`):
+Create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B`, ttoken @ `0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6`):
+```
+npm run create-merkleroot:kovan
+```
+copy the merkleroot into the `seedNewAllocations` function in `seedAllocations-kovan.js` & run:
+```
+npm run seed-allocations:kovan
 ```
 
+Create a proof of your claim to copy into etherscan to verify & then claim:
+```
+npm run create-proof:kovan
 ```
 
-Create a proof of your claim to copy into etherscan to claim:
+Alternatively, run this script to claim via an HDWalletProvider connection:
 ```
-
+npm run claim:kovan
 ```
 
 *If deploying the contracts yourself for testing initialize the MerkleDrop contract first:*
@@ -40,10 +49,16 @@ npm run init-merkledrop:kovan
     - claim with the Proof
 
 ### to do:
-  - write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)
-  - write script for making proof for user (see TestMerkleDrop spec file)
-  - kovan test
-  - verify contract on etherscan
+  - ~~write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)~~
+  - ~~write script for making proof for user (see TestMerkleDrop spec file)~~
+  - kovan testing
+    - ~~general~~
+    - redploy contracts & clean run-through: scripts
+    - verify contract on etherscan
+    - redploy contracts & clean run-through: etherscan
+  - ~~general tidying up & optimization~~
+  - create list of arrays for `getTranche` to pass in dynamically
+  - tweak bal allocation script to round to whole numbers
   - deploy Merkledrop to mainnet & verify
   - documentation
 

@@ -7,7 +7,7 @@ const { constants, time, expectRevert, expectEvent } = require('@openzeppelin/te
 const allocation = require('../allocation/utils.js');
 const contracts = require('../contractAddresses');
 const BigNumber = require('bignumber.js');
-const fs = require('fs'); 
+const fs = require('fs');
 
 const StakingRewards = artifacts.require('StakingRewards');
 const TToken = artifacts.require('TToken');
@@ -114,15 +114,6 @@ contract('BAL allocation', (accounts) => {
               let rewardsByAddress = await allocation.writeToArray(rewards);
               let forBal = await allocation.addRewards(rewards, rewardsByAddress);
               balAllocation = await allocation.writeBALAllocation(forBal, BAL);
-
-              fs.writeFileSync('./BalAllocation.json', JSON.stringify(balAllocation), (err) => {
-                  if (err) throw err;
-              });
-
-              let i;
-              for(i=0; i<balAllocation.length; i++){
-                allocatedBAL = allocatedBAL.plus(balAllocation[i][1]);
-              }
 
               /* cannot expect exact equivalence due to fractional remaining reward in Staking contract */
               expect(allocatedBAL.toNumber()).to.be.at.most(BAL.toNumber());
