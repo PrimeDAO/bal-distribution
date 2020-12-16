@@ -30,7 +30,7 @@
     "flatten": "sol-merger \"./contracts/**/*.sol\" ./_flat",
     "calc-bal:kovan": "npx truffle exec ./scripts/calc-bal-kovan.js --network kovan",
     "init-merkledrop:kovan": "npx truffle exec ./scripts/init-merkledrop-kovan.js --network kovan",
-    "create-merkleroot:kovan": "npx ts-node create-merkleroot.ts",
+    "create-merkleroot": "npx ts-node create-merkleroot.ts",
     "seed-allocations:kovan": "npx truffle exec ./scripts/seedAllocations-kovan.js --network kovan",
     "create-proof": "npx ts-node create-proof.ts",
     "claim:kovan": "npx truffle exec ./scripts/claim-kovan.js --network kovan"

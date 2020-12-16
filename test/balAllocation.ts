@@ -39,7 +39,7 @@ contract('BAL allocation', (accounts) => {
   let balAllocation;
 
   let rewards;
-  const BAL = BigNumber(100000000);
+  const BAL = BigNumber(process.env.BAL);
 
 
   before('!! deploy and setup', async () => {

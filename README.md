@@ -17,7 +17,7 @@ USERS:
 - navigate to list of accounts and claim amounts (this needs to be hosted on IPFS)
 - Go to the contract on etherscan at ______.
 - claim with the provided address, amount, and merkleproof information, entering '0' as the tranche
-- *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory*
+- *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory* <--- change this to using config file 
 
 
 DEV:
@@ -39,7 +39,7 @@ Copy the contents of the array saved in `BalAllocation.json` into `getTranche()`
 
 Create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B`, ttoken @ `0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6`):
 ```
-npm run create-merkleroot:kovan
+npm run create-merkleroot
 ```
 copy the merkleroot (either from `./merkleroot.json`) or the CLI output into the variable at line 14 in `seedAllocations-kovan.js` & run:
 ```
@@ -76,7 +76,7 @@ run `` to create list of addresses, allocations, and proofs for claiming: this f
   - documentation tidyup
   - look into dynamic array creation (optional : optimization)
 
-add address to env & then do runthrough via truffle if etherscan wont work
+add address to config file in root, import into scripts, & then do runthrough via truffle if etherscan wont work
 
 # Merkle-drop
 

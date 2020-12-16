@@ -1,4 +1,5 @@
 require('dotenv').config();
+const BigNumber = require('bignumber.js');
 const contracts = require('../contractAddresses');
 const merkleroot = require('../merkleroot')
 const merkledrop = artifacts.require('MerkleDrop');
@@ -9,7 +10,7 @@ module.exports = async function(callback) {
   const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
   const TToken = await ttoken.at(contracts.kovan.TToken);
 
-  let balAmount = 200000000;
+  let balAmount = BigNumber(process.env.BAL);
   let account = process.env.ACCOUNT;
   let merkleroot = merkleroot;
 
