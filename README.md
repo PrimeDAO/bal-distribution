@@ -6,10 +6,28 @@ It is comprised of scripts built atop the MStable MerkleDrop repo. These can be 
 
 - `/allocation/`
 - `/scripts/`
+- `MERKLE SCRIPTS DIRECTORY`
 
 These scripts calculate BAL allocation according to the same logic as MStable: the % of reward earned == the % of the total BAL allocation.
 
 Users will have had to withdraw their rewards prior to the BAL distribution.
+
+
+USERS:
+- navigate to list of accounts and claim amounts (this needs to be hosted on IPFS)
+- Go to the contract on etherscan at ______.
+- claim with the provided address, amount, and merkleproof information, entering '0' as the tranche
+- *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory*
+
+
+DEV:
+
+- package.json includes scripts for deployment to mainnet, kovan, and ropsten. N.B. remember to update the `contratAddresses.json` file with the new addresses.
+
+- *If deploying the contracts yourself for testing initialize the MerkleDrop contract first:*
+```
+npm run init-merkledrop:kovan
+```
 
 - To calculate the amount of BAL per account for deployed `StakingRewards` contract on Kovan (stakingrewards @ `0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3`):
 
@@ -18,39 +36,19 @@ Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` param
 npm run calc-bal:kovan
 ```
 
+Copy the contents of the array saved in `BalAllocation.json` into `getTranche()` line 85 `create-merkleroot.ts` & line __ `create-proof.ts`
+
 Create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B`, ttoken @ `0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6`):
 ```
 npm run create-merkleroot:kovan
 ```
-copy the merkleroot into the `seedNewAllocations` function in `seedAllocations-kovan.js` & run:
+copy the merkleroot (either from `./merkleroot.json`) or the CLI output into the variable at line 14 in `seedAllocations-kovan.js` & run:
 ```
 npm run seed-allocations:kovan
 ```
 
-USERS:
+run `` to create list of addresses, allocations, and proofs for claiming: this file should be uploaded to IPFS to share with claimaints
 
-Look at IPFS upload of allocations
-
-Create a proof of your claim: enter your in place of <ADDRESS> in line 98 `create-proof.ts`. The function call parameters will be written to `FOR-CLAIM.json`
-```
-npm run create-proof:kovan
-```
-
-Alternatively, run this script to claim via an HDWalletProvider connection:
-```
-npm run claim:kovan
-```
-
-*If deploying the contracts yourself for testing initialize the MerkleDrop contract first:*
-```
-npm run init-merkledrop:kovan
-```
-
-- To create a proof for your account:
-    - navigate to list of accounts and claim amounts (this needs to be hosted on IPFS)
-    - Run the script (make tree for account, call getAccountBalanceProof function w this tree & log to console)
-    - Go to the contract on etherscan
-    - claim with the Proof
 
 ### to do:
   - ~~write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)~~
@@ -60,14 +58,18 @@ npm run init-merkledrop:kovan
     - ~~redploy contracts & clean run-through: scripts~~
     - ~~verify contract on etherscan~~
     - redploy contracts & clean run-through: etherscan
+        - some issue with interacting via etherscan: script runthrough works fine
   - ~~general tidying up & optimization~~
   - ~~tweak bal allocation script: whole numbers~~
-  - look into dynamic array creation
-  - ipfs upload for bal allocation
-  - proof: proper writing to file  
-  - write .sh script
+  - add proofs to bal allocation for upload to ipfs
+  - directories tidyup - merkle scripts
+  - cli tidyup:
+    1. seedAllocations script
+    2.
   - deploy Merkledrop to mainnet & verify
-  - documentation
+  - documentation tidyup
+  - look into dynamic array creation (optional : optimization)
+
 
 
 # Merkle-drop

@@ -4,18 +4,26 @@ const ttoken = artifacts.require('TToken');
 const merkleproof = require('../merkleproof.json')
 const allocation = require('../allocation/balArray');
 const BigNumber = require('bignumber.js');
+const contracts = require('../contractAddresses');
 const { toWei } = web3.utils;
 
 module.exports = async function(callback) {
 
-  const MerkleDropKovan = await merkledrop.at('0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B');
-  const TToken = await ttoken.at('0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6');
+  const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
+  const TToken = await ttoken.at(contracts.kovan.TToken);
 
   /* for user to fill in */
-  let account = allocation.allocation[1][0] // <-- account
-  let amount = toWei('142'); // <-- amount
+  let account = allocation.allocation[3][0] // <-- account
+  let amount = toWei(allocation.allocation[3][1]); // <-- amount
 
   try {
+
+    console.log(account)
+    console.log(amount)
+    console.log(merkleproof)
+
+      // console.log('minting bal...')
+      // await TToken.mint(MerkleDropKovan.address, amount)
 
       console.log('claiming for tranche...')
       await MerkleDropKovan.claimWeek(

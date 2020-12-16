@@ -35,8 +35,14 @@ const getTranche = (
 
 const TRANCHES = {
   unclaimed: getTranche(
-    [allocation[0][0], allocation[0][1]],
-    [allocation[1][0], '142']
+    ["0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220","9000000"],
+    ["0x6d327055D5791a93545432906aFa229accf0B762","67000000"],
+    ["0x137dcE536912b0313D534aE0d10d122eA4C7a9ad","0"],
+    ["0xC4d9d1a93068d311Ab18E988244123430eB4F1CD","13000000"],
+    ["0xa3eB2115D947C29882c9Ee2d8D7BEF98d0cA16FD","0"],
+    ["0x47b72adb8cf42043E4796C2FEcF27E836E0341Fb","0"],
+    ["0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248","9000000"],
+    ["0x92e25f2830a3c5385Faa10e0030d3096578777Ac","0"]
   )
 }
 
@@ -66,7 +72,6 @@ const setup = async (
       const tranche = index.toString()
 
       const tree = createTreeWithAccounts(balances)
-      console.log(balances)
       merkletree = tree;
       const merkleRoot = tree.hexRoot
       merkleroot = merkleRoot;
@@ -95,15 +100,15 @@ async function makeProof() {
       tree,
       tranche,
       balances: {
-        [ allocation[1][0] ]: { balance },
+        [ '0xC4d9d1a93068d311Ab18E988244123430eB4F1CD' ]: { balance },
       },
     },
   ] = await setup(TRANCHES.unclaimed)
-  const proof = await getAccountBalanceProof(tree, allocation[1][0], balance)
+  console.log(balance.toString())
+  const proof = await getAccountBalanceProof(tree, '0xC4d9d1a93068d311Ab18E988244123430eB4F1CD', balance)
   fs.writeFile('./merkleproof.json', JSON.stringify(proof), (err) => {
       if (err) throw err;
   });
-  console.log(balance.toString())
   console.log('proof: ' + proof);
 }
 

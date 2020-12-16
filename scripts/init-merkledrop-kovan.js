@@ -3,11 +3,12 @@ require('dotenv').config();
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
 const BigNumber = require('bignumber.js');
+const contracts = require('../contractAddresses');
 
 module.exports = async function(callback) {
 
-  const MerkleDropKovan = await merkledrop.at('0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B');
-  const TToken = await ttoken.at('0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6');
+  const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
+  const TToken = await ttoken.at(contracts.kovan.TToken);
 
   try {
     console.log('initializing merkledrop');
@@ -19,4 +20,3 @@ module.exports = async function(callback) {
 
   callback();
 }
-  

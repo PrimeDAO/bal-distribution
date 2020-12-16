@@ -32,7 +32,7 @@
     "init-merkledrop:kovan": "npx truffle exec ./scripts/init-merkledrop-kovan.js --network kovan",
     "create-merkleroot:kovan": "npx ts-node create-merkleroot.ts",
     "seed-allocations:kovan": "npx truffle exec ./scripts/seedAllocations-kovan.js --network kovan",
-    "create-proof:kovan": "npx ts-node create-proof.ts",
+    "create-proof": "npx ts-node create-proof.ts",
     "claim:kovan": "npx truffle exec ./scripts/claim-kovan.js --network kovan"
   },
   "repository": {
