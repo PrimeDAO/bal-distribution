@@ -14,10 +14,10 @@ Users will have had to withdraw their rewards prior to the BAL distribution.
 
 
 USERS:
-- navigate to list of accounts and claim amounts (this needs to be hosted on IPFS)
-- Go to the contract on etherscan at ______.
+- navigate to list of accounts and claim amounts saved as `./user-claims.json` (n.b. this needs to be hosted on IPFS)
+- Go to the contract on etherscan (see `./contractAddresses.json` for deployed contract address).
 - claim with the provided address, amount, and merkleproof information, entering '0' as the tranche
-- *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory* <--- change this to using config file 
+- *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory* <--- change this to using config file
 
 
 DEV:
@@ -41,7 +41,7 @@ Create a merkleroot for claimants and seedNewAllocations in the contract (merkle
 ```
 npm run create-merkleroot
 ```
-copy the merkleroot (either from `./merkleroot.json`) or the CLI output into the variable at line 14 in `seedAllocations-kovan.js` & run:
+seed allocations for the computed tranche:
 ```
 npm run seed-allocations:kovan
 ```
@@ -60,13 +60,13 @@ run `` to create list of addresses, allocations, and proofs for claiming: this f
         - some issue with interacting via etherscan: script runthrough works fine
   - ~~general tidying up & optimization~~
   - ~~tweak bal allocation script: whole numbers~~
-  - change `claimWeek()` to `claimTranche()` & remove `claimWeeks()`
-      1. smart contract
-      2. test
-      3. scripts
-  - add proofs to bal allocation - new file for upload to ipfs
+  - ~~smart contract tidyup~~
+      1. ~~smart contract~~
+      2. ~~test~~
+      3. ~~scripts~~
+  - ~~add proofs to bal allocation - new file for upload to ipfs~~
   - directories tidyup:
-      1. add BAL amount to .env
+      1. ~~add BAL amount to .env~~ <-- change to 'test config'
       1. merkle scripts
       2. scripts: split into `kovan` & `mainnet`
       3. create mainnet script copies

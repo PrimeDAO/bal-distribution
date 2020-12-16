@@ -1,20 +1,21 @@
 require('dotenv').config();
 const BigNumber = require('bignumber.js');
 const contracts = require('../contractAddresses');
-const merkleroot = require('../merkleroot')
+const merkleroot = require('../merkleroot');
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
+const { toWei } = web3.utils;
+
 
 module.exports = async function(callback) {
 
   const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
   const TToken = await ttoken.at(contracts.kovan.TToken);
 
-  let balAmount = BigNumber(process.env.BAL);
-  let account = process.env.ACCOUNT;
-  let merkleroot = merkleroot;
-
   try {
+
+    let balAmount = toWei((process.env.BAL).toString());
+    let account = process.env.ACCOUNT;
 
     console.log('transferring BAL to merkledrop funding account...');
     await TToken.mint(account, balAmount);

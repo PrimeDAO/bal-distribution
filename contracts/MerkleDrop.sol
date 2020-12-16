@@ -98,7 +98,7 @@ contract MerkleDrop is Initializable, InitializableGovernableWhitelist {
     ****************************************/
 
 
-    function claimWeek(
+    function claimTranche(
         address _liquidityProvider,
         uint256 _tranche,
         uint256 _balance,
@@ -106,12 +106,12 @@ contract MerkleDrop is Initializable, InitializableGovernableWhitelist {
     )
         public
     {
-        _claimWeek(_liquidityProvider, _tranche, _balance, _merkleProof);
+        _claimTranche(_liquidityProvider, _tranche, _balance, _merkleProof);
         _disburse(_liquidityProvider, _balance);
     }
 
 
-    function claimWeeks(
+    function claimTranches(
         address _liquidityProvider,
         uint256[] memory _tranches,
         uint256[] memory _balances,
@@ -124,7 +124,7 @@ contract MerkleDrop is Initializable, InitializableGovernableWhitelist {
 
         uint256 totalBalance = 0;
         for(uint256 i = 0; i < len; i++) {
-            _claimWeek(_liquidityProvider, _tranches[i], _balances[i], _merkleProofs[i]);
+            _claimTranche(_liquidityProvider, _tranches[i], _balances[i], _merkleProofs[i]);
             totalBalance = totalBalance.add(_balances[i]);
         }
         _disburse(_liquidityProvider, totalBalance);
@@ -150,7 +150,7 @@ contract MerkleDrop is Initializable, InitializableGovernableWhitelist {
     ****************************************/
 
 
-    function _claimWeek(
+    function _claimTranche(
         address _liquidityProvider,
         uint256 _tranche,
         uint256 _balance,

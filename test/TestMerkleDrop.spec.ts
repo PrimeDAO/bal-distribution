@@ -131,7 +131,7 @@ contract('MerkleDrop', accounts => {
           .filter(([, value]) => value.claimed)
           .map(([account, { balance }]) => {
             const proof = getAccountBalanceProof(tree, account, balance)
-            return merkleDrop.claimWeek(account, tranche, balance, proof)
+            return merkleDrop.claimTranche(account, tranche, balance, proof)
           })
         await Promise.all(claims)
 
@@ -182,7 +182,7 @@ contract('MerkleDrop', accounts => {
     })
   })
 
-  describe('claimWeek', () => {
+  describe('claimTranche', () => {
     it('invalid liquidityProvider does not get claimed', async () => {
       const [{ tranche }] = await setup(
         // Just acct1, not acct2
@@ -200,7 +200,7 @@ contract('MerkleDrop', accounts => {
         balance,
       )
 
-      const claimPromise = merkleDrop.claimWeek(
+      const claimPromise = merkleDrop.claimTranche(
         acctWithNoClaim,
         tranche,
         balance,
@@ -225,7 +225,7 @@ contract('MerkleDrop', accounts => {
         balance,
       )
 
-      const claimPromise = merkleDrop.claimWeek(
+      const claimPromise = merkleDrop.claimTranche(
         claimantAcct,
         tranche,
         balance,
@@ -250,7 +250,7 @@ contract('MerkleDrop', accounts => {
 
       const proof = getAccountBalanceProof(tree, claimantAcct, balance)
 
-      const claimPromise = merkleDrop.claimWeek(
+      const claimPromise = merkleDrop.claimTranche(
         claimantAcct,
         1, // Tranche 1 should not exist yet
         balance,
@@ -273,7 +273,7 @@ contract('MerkleDrop', accounts => {
 
       const proof = getAccountBalanceProof(tree, claimantAcct, balance)
 
-      const claimPromise = merkleDrop.claimWeek(
+      const claimPromise = merkleDrop.claimTranche(
         claimantAcct,
         tranche,
         balance,
@@ -296,7 +296,7 @@ contract('MerkleDrop', accounts => {
 
       const proof = getAccountBalanceProof(tree, claimantAcct, balance)
 
-      const claimPromise = merkleDrop.claimWeek(
+      const claimPromise = merkleDrop.claimTranche(
         claimantAcct,
         tranche,
         balance,
@@ -322,7 +322,7 @@ contract('MerkleDrop', accounts => {
 
       const proof = getAccountBalanceProof(tree, claimantAcct, balance)
 
-      const claimTx = await merkleDrop.claimWeek(
+      const claimTx = await merkleDrop.claimTranche(
         claimantAcct,
         tranche,
         balance,
@@ -349,7 +349,7 @@ contract('MerkleDrop', accounts => {
 
       const proof = getAccountBalanceProof(tree, claimantAcct, balance)
 
-      const claimTx = await merkleDrop.claimWeek(
+      const claimTx = await merkleDrop.claimTranche(
         claimantAcct,
         tranche,
         balance,
@@ -367,7 +367,7 @@ contract('MerkleDrop', accounts => {
     })
   })
 
-  describe('claimWeeks', () => {
+  describe('claimTranches', () => {
     it('invalid liquidityProvider does not get claimed', async () => {
       const [{ tranche: tranche1 }, { tranche: tranche2 }] = await setup(
         // Just acct1, not acct2
@@ -387,7 +387,7 @@ contract('MerkleDrop', accounts => {
       const proof1 = getAccountBalanceProof(tree1, acctWithNoClaim, balances[0])
       const proof2 = getAccountBalanceProof(tree2, acctWithNoClaim, balances[0])
 
-      const claimPromise = merkleDrop.claimWeeks(
+      const claimPromise = merkleDrop.claimTranches(
         acctWithNoClaim,
         [tranche1, tranche2],
         balances,
@@ -416,7 +416,7 @@ contract('MerkleDrop', accounts => {
       const proof1 = getAccountBalanceProof(tree1, claimantAcct, balances[0])
       const proof2 = getAccountBalanceProof(tree2, claimantAcct, balances[0])
 
-      const claimPromise = merkleDrop.claimWeeks(
+      const claimPromise = merkleDrop.claimTranches(
         claimantAcct,
         [tranche1, tranche2],
         balances,
@@ -448,7 +448,7 @@ contract('MerkleDrop', accounts => {
       const proof2 = getAccountBalanceProof(tree2, claimantAcct, balance2)
       const proofs = [proof1, proof2]
 
-      const claimPromise = merkleDrop.claimWeeks(
+      const claimPromise = merkleDrop.claimTranches(
         claimantAcct,
         [1, 2], // Tranche 1 exists, but tranche 2 doesn't exist yet)
         balances,
@@ -487,7 +487,7 @@ contract('MerkleDrop', accounts => {
 
       const tranches = [tranche1, tranche2]
 
-      const claimPromise = merkleDrop.claimWeeks(
+      const claimPromise = merkleDrop.claimTranches(
         claimantAcct,
         tranches,
         balances,
@@ -524,7 +524,7 @@ contract('MerkleDrop', accounts => {
       const tranches = [tranche1, tranche2]
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           [], // No tranches
           balances,
@@ -534,7 +534,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           [tranches[0]], // One tranche
           balances,
@@ -544,7 +544,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           [0, 1, 2], // Extra tranche
           balances,
@@ -554,7 +554,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           tranches,
           [], // no balances
@@ -564,7 +564,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           tranches,
           [balances[0]], // one balance
@@ -574,7 +574,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           tranches,
           [...balances, exactAmount('100')], // extra balance
@@ -584,7 +584,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           tranches,
           balances,
@@ -594,7 +594,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           tranches,
           balances,
@@ -604,7 +604,7 @@ contract('MerkleDrop', accounts => {
       )
 
       await expectRevert(
-        merkleDrop.claimWeeks(
+        merkleDrop.claimTranches(
           claimantAcct,
           tranches,
           balances,
@@ -640,7 +640,7 @@ contract('MerkleDrop', accounts => {
 
       const tranches = [tranche1, tranche2]
 
-      const claimTx = await merkleDrop.claimWeeks(
+      const claimTx = await merkleDrop.claimTranches(
         claimantAcct,
         tranches,
         balances,
@@ -685,7 +685,7 @@ contract('MerkleDrop', accounts => {
 
       const tranches = [tranche1, tranche2]
 
-      const claimTx = await merkleDrop.claimWeeks(
+      const claimTx = await merkleDrop.claimTranches(
         claimantAcct,
         tranches,
         balances,

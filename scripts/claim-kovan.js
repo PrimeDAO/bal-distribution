@@ -12,8 +12,8 @@ module.exports = async function(callback) {
   const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
   const TToken = await ttoken.at(contracts.kovan.TToken);
 
-  let account = '0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248' // <-- account
-  let amount = toWei('9000000'); // <-- amount
+  let account = '0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220' // <-- account
+  let amount = toWei('810000000000000000'); // <-- amount
 
   try {
 
@@ -22,9 +22,9 @@ module.exports = async function(callback) {
     console.log('merkleproof: ' + merkleproof)
 
       console.log('claiming for tranche...')
-      await MerkleDropKovan.claimWeek(
+      await MerkleDropKovan.claimTranche(
         account,
-        0,
+        1,
         amount,
         merkleproof
       )
