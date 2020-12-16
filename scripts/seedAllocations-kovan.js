@@ -1,6 +1,6 @@
 require('dotenv').config();
 const contracts = require('../contractAddresses');
-
+const merkleroot = require('../merkleroot')
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
 
@@ -11,22 +11,17 @@ module.exports = async function(callback) {
 
   let balAmount = 200000000;
   let account = process.env.ACCOUNT;
-  let merkleroot = '0xbe4b5943c5391378201f69adda2c7c8e37eeaf133676a408dddac819b2e4387a'
+  let merkleroot = merkleroot;
 
   try {
 
+    console.log('transferring BAL to merkledrop funding account...');
     await TToken.mint(account, balAmount);
-    let balance = await TToken.balanceOf(account);
-    console.log('balance of ' + account + ': ' + balance.toString())
-    await TToken.approve(MerkleDropKovan.address, balAmount)
-
-    let trancheID = await MerkleDropKovan.seedNewAllocations(merkleroot, balAmount);
-    console.log(trancheID);
-
-    let balance2 = await TToken.balanceOf(account);
-    console.log('balance of ' + account + ': ' + balance2.toString())
-    let contractBalance = await TToken.balanceOf(MerkleDropKovan.address)
-    console.log('balance of MerkleDrop:' + contractBalance)
+    console.log('...transfer complete \n approving...');
+    await TToken.approve(MerkleDropKovan.address, balAmount);
+    console.log('...approval complete \n seeding new allocations...');
+    await MerkleDropKovan.seedNewAllocations(merkleroot, balAmount);
+    console.log('...seeding complete: merkledrop ready for claims')
 
   } catch(error) {
 

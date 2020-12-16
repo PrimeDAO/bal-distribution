@@ -12,18 +12,14 @@ module.exports = async function(callback) {
   const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
   const TToken = await ttoken.at(contracts.kovan.TToken);
 
-  /* for user to fill in */
-  let account = allocation.allocation[3][0] // <-- account
-  let amount = toWei(allocation.allocation[3][1]); // <-- amount
+  let account = '0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248' // <-- account
+  let amount = toWei('9000000'); // <-- amount
 
   try {
 
-    console.log(account)
-    console.log(amount)
-    console.log(merkleproof)
-
-      // console.log('minting bal...')
-      // await TToken.mint(MerkleDropKovan.address, amount)
+    console.log('account: ' + account)
+    console.log('amount: ' + amount)
+    console.log('merkleproof: ' + merkleproof)
 
       console.log('claiming for tranche...')
       await MerkleDropKovan.claimWeek(
@@ -40,4 +36,5 @@ module.exports = async function(callback) {
   }
 
   callback();
+
 }

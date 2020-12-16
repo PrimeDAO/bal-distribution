@@ -21,7 +21,6 @@ USERS:
 
 
 DEV:
-
 - package.json includes scripts for deployment to mainnet, kovan, and ropsten. N.B. remember to update the `contratAddresses.json` file with the new addresses.
 
 - *If deploying the contracts yourself for testing initialize the MerkleDrop contract first:*
@@ -61,16 +60,23 @@ run `` to create list of addresses, allocations, and proofs for claiming: this f
         - some issue with interacting via etherscan: script runthrough works fine
   - ~~general tidying up & optimization~~
   - ~~tweak bal allocation script: whole numbers~~
-  - add proofs to bal allocation for upload to ipfs
-  - directories tidyup - merkle scripts
-  - cli tidyup:
-    1. seedAllocations script
-    2.
+  - change `claimWeek()` to `claimTranche()` & remove `claimWeeks()`
+      1. smart contract
+      2. test
+      3. scripts
+  - add proofs to bal allocation - new file for upload to ipfs
+  - directories tidyup:
+      1. add BAL amount to .env
+      1. merkle scripts
+      2. scripts: split into `kovan` & `mainnet`
+      3. create mainnet script copies
+  - ~~cli tidyup:~~
+    1. ~~seedAllocations script~~
   - deploy Merkledrop to mainnet & verify
   - documentation tidyup
   - look into dynamic array creation (optional : optimization)
 
-
+add address to env & then do runthrough via truffle if etherscan wont work
 
 # Merkle-drop
 

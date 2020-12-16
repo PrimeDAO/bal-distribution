@@ -100,16 +100,16 @@ async function makeProof() {
       tree,
       tranche,
       balances: {
-        [ '0xC4d9d1a93068d311Ab18E988244123430eB4F1CD' ]: { balance },
+        [ '0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248' ]: { balance },
       },
     },
   ] = await setup(TRANCHES.unclaimed)
-  console.log(balance.toString())
-  const proof = await getAccountBalanceProof(tree, '0xC4d9d1a93068d311Ab18E988244123430eB4F1CD', balance)
+  const proof = await getAccountBalanceProof(tree, '0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248', balance)
   fs.writeFile('./merkleproof.json', JSON.stringify(proof), (err) => {
       if (err) throw err;
   });
   console.log('proof: ' + proof);
+  console.log('balance to claim: ' + balance.toString());
 }
 
 makeProof();

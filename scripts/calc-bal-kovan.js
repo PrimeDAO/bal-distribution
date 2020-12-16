@@ -11,11 +11,6 @@ BigNumber.config({
     DECIMAL_PLACES: 0,
 });
 
-/*
-* Following the logic of MStable (rewarding BAL according to MTA earned)
-* we just reward BAL per % of total reward amount each address has earned
-*/
-
 module.exports = async function(callback) {
 
   const StakingRewards = await staking.at(contracts.kovan.StakingRewards);
