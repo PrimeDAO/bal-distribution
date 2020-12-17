@@ -7,5 +7,5 @@ const TToken = artifacts.require("TToken");
 module.exports = async (deployer, network, accounts) => {
     await deployer.deploy(Migrations);
     await deployer.deploy(MerkleDrop);
-    await deployer.deploy(TToken, 'TTOKEN', 'TT', 18); 
+    await deployer.deploy(TToken, 'TTOKEN', 'TT', 18);
 };

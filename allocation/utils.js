@@ -76,7 +76,7 @@ async function writeBALAllocation(addressArray, totalBAL){
       let rewardOver100 = rewardAmount.dividedBy(100);
       let rewardPercentage = BigNumber(addressArray[j][1]).dividedBy(rewardOver100);
       // console.log('reward percentage' + ': ' + rewardPercentage.toString());
-
+      console.log(totalBAL.toString())
       /* what is this as a % of total BAL */
       let balOver100 = totalBAL.dividedBy(100);
       let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100).toFixed(0);

@@ -18,6 +18,7 @@ USERS:
 - Go to the contract on etherscan (see `./contractAddresses.json` for deployed contract address).
 - claim with the provided address, amount, and merkleproof information, entering '0' as the tranche
 - *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory* <--- change this to using config file
+- to claim via cli, run `npm run claim:kovan` after adding details to `scripts/claim-kovan.js` & creating an .env for the infura hookup
 
 
 DEV:
@@ -35,9 +36,9 @@ Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` param
 npm run calc-bal:kovan
 ```
 
-Copy the contents of the array saved in `BalAllocation.json` into `getTranche()` line 85 `create-merkleroot.ts` & line __ `create-proof.ts`
+Copy the contents of the array saved in `BalAllocation.json` into `getTranche()` line 85 `create-merkleroot.ts` & line __ `create-proof.ts`. As this drop will only be run once, `tranche` is hardcoded as 0.
 
-Create a merkleroot for claimants and seedNewAllocations in the contract (merkledrop on kovan at `0x2DceeFaA9471C2647030549b17fdEEc2E4aa0F5B`, ttoken @ `0x3618A04c72B1DF99d1c6A528F6Fc6267e1D1C6D6`):
+Create a merkleroot seeding new allocations in the contract, and also creating the list of accounts, balances to claim, and merkleproofs saved at `user-claims.json` to be uploaded to IPFS (*claims are expressed in wei*):
 ```
 npm run create-merkleroot
 ```
@@ -46,18 +47,17 @@ seed allocations for the computed tranche:
 npm run seed-allocations:kovan
 ```
 
-run `` to create list of addresses, allocations, and proofs for claiming: this file should be uploaded to IPFS to share with claimaints
 
 
 ### to do:
   - ~~write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)~~
   - ~~write script for making proof for user (see TestMerkleDrop spec file)~~
-  - kovan testing
+  - ~~kovan testing~~
     - ~~general~~
     - ~~redploy contracts & clean run-through: scripts~~
     - ~~verify contract on etherscan~~
-    - redploy contracts & clean run-through: etherscan
-        - some issue with interacting via etherscan: script runthrough works fine
+    - ~~redploy contracts & clean run-through: etherscan~~
+        - ~~some issue with interacting via etherscan: script runthrough works fine~~
   - ~~general tidying up & optimization~~
   - ~~tweak bal allocation script: whole numbers~~
   - ~~smart contract tidyup~~
@@ -65,6 +65,9 @@ run `` to create list of addresses, allocations, and proofs for claiming: this f
       2. ~~test~~
       3. ~~scripts~~
   - ~~add proofs to bal allocation - new file for upload to ipfs~~
+  - properly foramtted user claims for IPFS: save as txt file, no formatting
+  - metascript for developer prep
+  - ~~write tranche in the proof~~
   - directories tidyup:
       1. ~~add BAL amount to .env~~ <-- change to 'test config'
       1. merkle scripts
@@ -76,7 +79,7 @@ run `` to create list of addresses, allocations, and proofs for claiming: this f
   - documentation tidyup
   - look into dynamic array creation (optional : optimization)
 
-add address to config file in root, import into scripts, & then do runthrough via truffle if etherscan wont work
+~~add address to config file in root, import into scripts, & then do runthrough via truffle if etherscan wont work~~
 
 # Merkle-drop
 
