@@ -15,13 +15,14 @@ module.exports = async function(callback) {
   try {
 
     let balAmount = toWei((process.env.BAL).toString());
+    console.log('BAL to seed (as wei): ' + balAmount);
     let account = process.env.ACCOUNT;
 
     console.log('transferring BAL to merkledrop funding account...');
     await TToken.mint(account, balAmount);
-    console.log('...transfer complete \n approving...');
+    console.log('...transfer complete \napproving...');
     await TToken.approve(MerkleDropKovan.address, balAmount);
-    console.log('...approval complete \n seeding new allocations...');
+    console.log('...approval complete \nseeding new allocations...');
     await MerkleDropKovan.seedNewAllocations(merkleroot, balAmount);
     console.log('...seeding complete: merkledrop ready for claims')
 

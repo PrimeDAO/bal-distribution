@@ -17,6 +17,7 @@ module.exports = async function(callback) {
 
   const StakingRewards = await staking.at(contracts.kovan.StakingRewards);
 
+  try {
     let parsedAddresses = [];
     let rewardsByAddress = [];
     let forBal = [];
@@ -27,7 +28,7 @@ module.exports = async function(callback) {
     let prev = now - BigNumber(60*60*24*30); // now - 1 month
 
     /* Reward & BAL total for testing */
-    const BAL = toWei((process.env.BAL).toString());;
+    const BAL = BigNumber(process.env.BAL);
     const RewardAmount = BigNumber(await StakingRewards.initreward());
     // console.log('reward amount: ' + RewardAmount);
 
@@ -55,13 +56,19 @@ module.exports = async function(callback) {
     allocation.logAmounts(forBal);
 
     /* work out as % of sum of paid out rewards -> write array for each with BAL % for MerkleDrop */
-    console.log('\n' + 'writing BAL allocation: ');
+    console.log('\n' + 'writing BAL allocation... ');
     balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
     fs.writeFileSync('./BalAllocation.json', JSON.stringify(balAllocation), (err) => {
         if (err) throw err;
     });
-    console.log('\n BAL allocation written to "BalAllocation.json"');
+    console.log('\n...BAL allocation written to "BalAllocation.json"');
+
+  } catch(error) {
+
+      console.log(error);
+
+  }
 
 
   callback();

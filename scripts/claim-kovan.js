@@ -13,23 +13,23 @@ module.exports = async function(callback) {
   const TToken = await ttoken.at(contracts.kovan.TToken);
 
   let account = '0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220' // <-- account
-  let amount = toWei('810000000000000000'); // <-- amount
+  let amount = '9000000000000000000'; // <-- amount
 
   try {
 
-    console.log('account: ' + account)
-    console.log('amount: ' + amount)
-    console.log('merkleproof: ' + merkleproof)
+    console.log(account)
+    console.log(amount)
+    console.log(merkleproof)
 
-      console.log('claiming for tranche...')
-      await MerkleDropKovan.claimTranche(
-        account,
-        1,
-        amount,
-        merkleproof
-      )
+     console.log('claiming for tranche...')
+     await MerkleDropKovan.claimTranche(
+       account,
+       2,
+       amount,
+       merkleproof
+     )
 
-      console.log('...claim successful')
+     console.log('...claim successful')
 
   } catch(error) {
     await console.log(error)
