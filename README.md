@@ -49,19 +49,15 @@ npm run seed-allocations:kovan
 
 ### to do:
   - properly foramtted user claims for IPFS: save as txt file, no formatting
-  - directories tidyup:
-      1. ~~merkle scripts~~
-      2. ~~scripts: split into `kovan` & `mainnet`~~
-      3. create mainnet script copies
-  - tweak rounding in allocation for more specific numbers: CHANGE BAL TO WEI IN CALC SCRIPT SO YOU CAN PASS WHOLE NUMBERS EARLIEST OPP & REMOVE LATER TOWEI() CONVERSION  
+  - create mainnet scripts
+      - init
+      - seedAllocations
+      - deployer -> write to contratAddresses.json
 
   - deploy Merkledrop to mainnet & verify
   - documentation tidyup
-  - comments on the google doc
-  - screenshots
 
-  - look into dynamic array creation (optional : optimization)
-  - metascript for developer prep (optional : optimization)
+  - screenshots
 
 
 # Merkle-drop

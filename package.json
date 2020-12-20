@@ -28,12 +28,12 @@
     "generate-typings": "rimraf ./types/generated && typechain --target 'truffle-v5' --outDir types/generated './build/contracts/*.json'",
     "prettify": "prettier --write test/*.ts test/**/*.ts types/generated/*.ts types/*.ts artifacts/*.ts",
     "flatten": "sol-merger \"./contracts/**/*.sol\" ./_flat",
-    "calc-bal:kovan": "npx truffle exec ./scripts/calc-bal-kovan.js --network kovan",
-    "init-merkledrop:kovan": "npx truffle exec ./scripts/init-merkledrop-kovan.js --network kovan",
-    "create-merkleroot": "npx ts-node create-merkleroot.ts",
-    "seed-allocations:kovan": "npx truffle exec ./scripts/seedAllocations-kovan.js --network kovan",
-    "create-proof": "npx ts-node create-proof.ts",
-    "claim:kovan": "npx truffle exec ./scripts/claim-kovan.js --network kovan"
+    "calc-bal:kovan": "npx truffle exec ./scripts/kovan/calc-bal-kovan.js --network kovan",
+    "init-merkledrop:kovan": "npx truffle exec ./scripts/kovan/init-merkledrop-kovan.js --network kovan",
+    "create-merkleroot": "npx ts-node ./merklescripts/create-merkleroot.ts",
+    "seed-allocations:kovan": "npx truffle exec ./scripts/kovan/seedAllocations-kovan.js --network kovan",
+    "create-proof": "npx ts-node ./merklescripts/create-proof.ts",
+    "claim:kovan": "npx truffle exec ./scripts/kovan/claim-kovan.js --network kovan"
   },
   "repository": {
     "type": "git",

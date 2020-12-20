@@ -95,10 +95,6 @@ contract('BAL allocation', (accounts) => {
 
               await time.increase(time.duration.hours(2));
           });
-          it('', async () => {
-              let emptyRewards = [];
-              let noRewards = await allocation.writeToArray(emptyRewards);
-          });
           it('grabbed events array length == number of events', async () => {
               let rewards = await stakingRewards.getPastEvents('RewardPaid', {
                   fromBlock: 0,

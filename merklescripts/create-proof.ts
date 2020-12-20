@@ -35,13 +35,13 @@ const getTranche = (
 
 const TRANCHES = {
   unclaimed: getTranche(
-    ["0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220","9"],
-    ["0x6d327055D5791a93545432906aFa229accf0B762","67"],
+    ["0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220","922676739013339959773"],
+    ["0x6d327055D5791a93545432906aFa229accf0B762","6769050684176718188723"],
     ["0x137dcE536912b0313D534aE0d10d122eA4C7a9ad","0"],
-    ["0xC4d9d1a93068d311Ab18E988244123430eB4F1CD","13"],
-    ["0xa3eB2115D947C29882c9Ee2d8D7BEF98d0cA16FD","0"],
-    ["0x47b72adb8cf42043E4796C2FEcF27E836E0341Fb","0"],
-    ["0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248","9"],
+    ["0xC4d9d1a93068d311Ab18E988244123430eB4F1CD","1344490162678758460604"],
+    ["0xa3eB2115D947C29882c9Ee2d8D7BEF98d0cA16FD","10858624980528405"],
+    ["0x47b72adb8cf42043E4796C2FEcF27E836E0341Fb","27331361886973658454"],
+    ["0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248","936440193619229204038"],
     ["0x92e25f2830a3c5385Faa10e0030d3096578777Ac","0"]
   )
 }
@@ -100,11 +100,11 @@ async function makeProof() {
       tree,
       tranche,
       balances: {
-        [ '0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248' ]: { balance },
+        [ '0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220' ]: { balance },
       },
     },
   ] = await setup(TRANCHES.unclaimed)
-  const proof = await getAccountBalanceProof(tree, '0x0ecfd7C7b08F05d9d28b80AE3139E42817f73248', balance)
+  const proof = await getAccountBalanceProof(tree, '0x1bf4e7D549fD7Bf9c6BA3Be8BD2b9Af62F086220', balance)
   fs.writeFile('./merkleproof.json', JSON.stringify(proof), (err) => {
       if (err) throw err;
   });

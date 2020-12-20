@@ -15,7 +15,7 @@ module.exports = async function(callback) {
   try {
 
     let balAmount = toWei((process.env.BAL).toString());
-    console.log('BAL to seed (as wei): ' + balAmount);
+    console.log('BAL to seed: ' + process.env.BAL);
     let account = process.env.ACCOUNT;
 
     console.log('transferring kovan BAL to merkledrop funding account...');

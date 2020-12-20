@@ -10,7 +10,7 @@ const { toWei } = web3.utils;
 BigNumber.config({
     EXPONENTIAL_AT: [-100, 100],
     ROUNDING_MODE: BigNumber.ROUND_DOWN,
-    DECIMAL_PLACES: 0,
+    DECIMALS: 0
 });
 
 module.exports = async function(callback) {
@@ -24,12 +24,13 @@ module.exports = async function(callback) {
     let forBal = [];
     let balAllocation = [];
 
-    /* these are loose for testing: we will have exact times at end */
+    /* these are loose for testing */
     let now = await web3.eth.getBlockNumber();
     let prev = now - BigNumber(60*60*24*30); // now - 1 month
 
     /* Reward & BAL total for testing */
     const BAL = BigNumber(process.env.BAL);
+    console.log('BAL: ' + BAL.toString());
     const RewardAmount = BigNumber(await StakingRewards.initreward());
     // console.log('reward amount: ' + RewardAmount);
 

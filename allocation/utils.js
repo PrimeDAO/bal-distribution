@@ -8,7 +8,7 @@ import { simpleToExactAmount } from '../test/utils/math'
 BigNumber.config({
     EXPONENTIAL_AT: [-100, 100],
     ROUNDING_MODE: BigNumber.ROUND_DOWN,
-    DECIMAL_PLACES: 0,
+    DECIMALS: 0
 });
 
 async function writeToArray(events){
@@ -75,12 +75,12 @@ async function writeBALAllocation(addressArray, totalBAL){
       // console.log('total PRIME earned by ' + addressArray[j][0] + ': ' + (addressArray[j][1]).toString());
       let rewardOver100 = rewardAmount.dividedBy(100);
       let rewardPercentage = BigNumber(addressArray[j][1]).dividedBy(rewardOver100);
-      console.log('PRIME reward percentage for ' + addressArray[j][0] + ': ' + rewardPercentage.toString() + '%');
+      // console.log('PRIME reward percentage for ' + addressArray[j][0] + ': ' + rewardPercentage.toString() + '%');
       /* what is this as a % of total BAL */
       let balOver100 = totalBAL.dividedBy(100);
       // let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100).toFixed(0);
       let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100);
-      console.log('BAL reward: ' + balReward.toString() + '\n')
+      // console.log('BAL reward: ' + balReward.toString() + '\n')
 
       /* push BAL allocation to array */
       let arr = [

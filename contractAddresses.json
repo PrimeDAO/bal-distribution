@@ -1,8 +1,8 @@
 {
   "kovan":{
     "StakingRewards":"0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3",
-    "MerkleDrop": "0x2d58791f8AC1C47b5C82326eBB5c5cC7080abB5F",
-    "TToken": "0x074490B56c725d91624d75eD893397a83Ea0b75e"
+    "MerkleDrop": "0x85cE59BFd88A53Db75960C9b5f7b417F0b88e7eb",
+    "TToken": "0x9A97731cf439325384149ad39aA7D317ed004ED6"
   },
   "mainnet":{
       "StakingRewards":"0xE25faBF901Be98099b0FD8C8b3827A4c69F909E4",
