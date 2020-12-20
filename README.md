@@ -48,13 +48,10 @@ npm run seed-allocations:kovan
 ```
 
 ### to do:
-  - create mainnet scripts
-      - init
-      - seedAllocations
-      - deployer -> write to contratAddresses.json
-
+  - kovan deployer script -> write to contratAddresses.json
+  - mainnet deployer script -> write to contratAddresses.json
   - deploy Merkledrop to mainnet & verify
-  - documentation tidyup
+  - README tidyup
 
 
 
