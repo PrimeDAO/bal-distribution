@@ -9,10 +9,10 @@ const { toWei } = web3.utils;
 
 module.exports = async function(callback) {
 
-  const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
-  const BAL = await bal.at(contracts.kovan.BAL);
-
   try {
+
+    const MerkleDropKovan = await merkledrop.at(contracts.mainnet.MerkleDrop);
+    const BAL = await bal.at(contracts.mainnet.BAL);
 
     let balAmount = toWei((process.env.BAL).toString());
     console.log('BAL to seed: ' + process.env.BAL);

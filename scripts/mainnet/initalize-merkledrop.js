@@ -6,10 +6,10 @@ const contracts = require('../../contractAddresses');
 
 module.exports = async function(callback) {
 
-  const MerkleDropKovan = await merkledrop.at(contracts.mainnet.MerkleDrop);
-  const BAL = await ttoken.at(contracts.mainnet.BAL);
-
   try {
+
+    const MerkleDropKovan = await merkledrop.at(contracts.mainnet.MerkleDrop);
+    const BAL = await ttoken.at(contracts.mainnet.BAL);
 
     console.log('initializing merkledrop...');
     await MerkleDropKovan.initialize(process.env.ACCOUNT, [process.env.ACCOUNT], BAL.address);
