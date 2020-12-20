@@ -48,7 +48,6 @@ npm run seed-allocations:kovan
 ```
 
 ### to do:
-  - properly foramtted user claims for IPFS: save as txt file, no formatting
   - create mainnet scripts
       - init
       - seedAllocations
@@ -57,7 +56,6 @@ npm run seed-allocations:kovan
   - deploy Merkledrop to mainnet & verify
   - documentation tidyup
 
-  - screenshots
 
 
 # Merkle-drop

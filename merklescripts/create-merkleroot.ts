@@ -118,12 +118,12 @@ async function writeProofs() {
       },
     ] = await setup(TRANCHES.unclaimed)
     const proof = await getAccountBalanceProof(tree, allocation[i][0], balance)
-    console.log('to claim (as wei): ' + balance.toString())
+    // console.log('to claim (as wei): ' + balance.toString())
     let obj = {
-      account: allocation[i][0],
-      tranche: 0,
-      claim: balance.toString(),
-      proof: proof
+      _liquidityProvider: allocation[i][0],
+      _tranche: 0,
+      _balance: balance.toString(),
+      _merkleProof: proof
     }
     forIPFS.push(obj)
   }

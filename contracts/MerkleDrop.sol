@@ -111,26 +111,6 @@ contract MerkleDrop is Initializable, InitializableGovernableWhitelist {
     }
 
 
-    function claimTranches(
-        address _liquidityProvider,
-        uint256[] memory _tranches,
-        uint256[] memory _balances,
-        bytes32[][] memory _merkleProofs
-    )
-        public
-    {
-        uint256 len = _tranches.length;
-        require(len == _balances.length && len == _merkleProofs.length, "Mismatching inputs");
-
-        uint256 totalBalance = 0;
-        for(uint256 i = 0; i < len; i++) {
-            _claimTranche(_liquidityProvider, _tranches[i], _balances[i], _merkleProofs[i]);
-            totalBalance = totalBalance.add(_balances[i]);
-        }
-        _disburse(_liquidityProvider, totalBalance);
-    }
-
-
     function verifyClaim(
         address _liquidityProvider,
         uint256 _tranche,
