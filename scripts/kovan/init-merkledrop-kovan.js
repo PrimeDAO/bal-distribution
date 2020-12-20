@@ -7,15 +7,19 @@ const contracts = require('../../contractAddresses');
 
 module.exports = async function(callback) {
 
-  const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
-  const TToken = await ttoken.at(contracts.kovan.TToken);
-
   try {
+
+    const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
+    const TToken = await ttoken.at(contracts.kovan.TToken);
+
     console.log('initializing merkledrop...');
     await MerkleDropKovan.initialize(process.env.ACCOUNT, [process.env.ACCOUNT], TToken.address);
     console.log('...contract initialized');
+
   } catch(error) {
+
     consosle.log(error)
+
   }
 
   callback();
