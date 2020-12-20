@@ -3,7 +3,7 @@ require('dotenv').config();
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
 const BigNumber = require('bignumber.js');
-const contracts = require('../contractAddresses');
+const contracts = require('../../contractAddresses');
 
 module.exports = async function(callback) {
 
@@ -11,9 +11,9 @@ module.exports = async function(callback) {
   const TToken = await ttoken.at(contracts.kovan.TToken);
 
   try {
-    console.log('initializing merkledrop');
+    console.log('initializing merkledrop...');
     await MerkleDropKovan.initialize(process.env.ACCOUNT, [process.env.ACCOUNT], TToken.address);
-    console.log('initialized')
+    console.log('...contract initialized');
   } catch(error) {
     consosle.log(error)
   }

@@ -1,10 +1,10 @@
 require('dotenv').config();
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
-const merkleproof = require('../merkleproof.json')
-const allocation = require('../allocation/balArray');
+const merkleproof = require('../../merklescripts/merkleproof.json')
+const allocation = require('../../allocation/balArray');
 const BigNumber = require('bignumber.js');
-const contracts = require('../contractAddresses');
+const contracts = require('../../contractAddresses');
 const { toWei, hexToBytes, bytesToHex } = web3.utils;
 
 module.exports = async function(callback) {
@@ -20,7 +20,7 @@ module.exports = async function(callback) {
     console.log(account)
     console.log(amount)
     console.log(merkleproof)
-     
+
      // console.log('claiming for tranche...')
      // await MerkleDropKovan.claimTranche(
      //   account,

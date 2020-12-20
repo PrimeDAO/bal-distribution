@@ -41,7 +41,6 @@ contract('BAL allocation', (accounts) => {
   let rewards;
   const BAL = BigNumber(process.env.BAL);
 
-
   before('!! deploy and setup', async () => {
      stakingRewards = await StakingRewards.new();
      bal = await TToken.new('TToken', 'TKN', DECIMALS);
@@ -95,6 +94,10 @@ contract('BAL allocation', (accounts) => {
               await stakingRewards.getReward({from:accounts[7]});
 
               await time.increase(time.duration.hours(2));
+          });
+          it('', async () => {
+              let emptyRewards = [];
+              let noRewards = await allocation.writeToArray(emptyRewards);
           });
           it('grabbed events array length == number of events', async () => {
               let rewards = await stakingRewards.getPastEvents('RewardPaid', {

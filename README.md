@@ -6,7 +6,7 @@ It is comprised of scripts built atop the MStable MerkleDrop repo. These can be 
 
 - `/allocation/`
 - `/scripts/`
-- `MERKLE SCRIPTS DIRECTORY`
+- `/merklescripts/`
 
 These scripts calculate BAL allocation according to the same logic as MStable: the % of reward earned == the % of the total BAL allocation.
 
@@ -36,9 +36,9 @@ Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` param
 npm run calc-bal:kovan
 ```
 
-Copy the contents of the array saved in `BalAllocation.json` into `getTranche()` line 85 `create-merkleroot.ts` & line __ `create-proof.ts`. As this drop will only be run once, `tranche` is hardcoded as 0.
+Copy the contents of the array saved in `BalAllocation.json` into `getTranche()` line 85 `create-merkleroot.ts` & line 37 `create-proof.ts`. As this drop will only be run once, `tranche` is hardcoded as 0.
 
-Create a merkleroot seeding new allocations in the contract, and also creating the list of accounts, balances to claim, and merkleproofs saved at `user-claims.json` to be uploaded to IPFS (*claims are expressed in wei*):
+Create a merkleroot for seeding new allocations in the contract, and also creating the list of accounts, balances to claim, and merkleproofs saved at `./user-claims` to be uploaded to IPFS (*claims are expressed in wei*):
 ```
 npm run create-merkleroot
 ```
@@ -47,39 +47,22 @@ seed allocations for the computed tranche:
 npm run seed-allocations:kovan
 ```
 
-
-
 ### to do:
-  - ~~write script for making tree w all claimants & calling `seedNewAllocations` (see TestMerkleDrop spec file)~~
-  - ~~write script for making proof for user (see TestMerkleDrop spec file)~~
-  - ~~kovan testing~~
-    - ~~general~~
-    - ~~redploy contracts & clean run-through: scripts~~
-    - ~~verify contract on etherscan~~
-    - ~~redploy contracts & clean run-through: etherscan~~
-        - ~~some issue with interacting via etherscan: script runthrough works fine~~
-  - ~~general tidying up & optimization~~
-  - ~~tweak bal allocation script: whole numbers~~
-  - ~~smart contract tidyup~~
-      1. ~~smart contract~~
-      2. ~~test~~
-      3. ~~scripts~~
-  - ~~add proofs to bal allocation - new file for upload to ipfs~~
   - properly foramtted user claims for IPFS: save as txt file, no formatting
-  - metascript for developer prep
-  - ~~write tranche in the proof~~
   - directories tidyup:
-      1. ~~add BAL amount to .env~~ <-- change to 'test config'
-      1. merkle scripts
-      2. scripts: split into `kovan` & `mainnet`
+      1. ~~merkle scripts~~
+      2. ~~scripts: split into `kovan` & `mainnet`~~
       3. create mainnet script copies
-  - ~~cli tidyup:~~
-    1. ~~seedAllocations script~~
+  - tweak rounding in allocation for more specific numbers: CHANGE BAL TO WEI IN CALC SCRIPT SO YOU CAN PASS WHOLE NUMBERS EARLIEST OPP & REMOVE LATER TOWEI() CONVERSION  
+
   - deploy Merkledrop to mainnet & verify
   - documentation tidyup
-  - look into dynamic array creation (optional : optimization)
+  - comments on the google doc
+  - screenshots
 
-~~add address to config file in root, import into scripts, & then do runthrough via truffle if etherscan wont work~~
+  - look into dynamic array creation (optional : optimization)
+  - metascript for developer prep (optional : optimization)
+
 
 # Merkle-drop
 

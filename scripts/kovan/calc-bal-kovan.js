@@ -1,9 +1,9 @@
 require('dotenv').config();
 const fs = require('fs');
 const BigNumber = require('bignumber.js');
-const contracts = require('../contractAddresses');
+const contracts = require('../../contractAddresses');
 const staking = artifacts.require('StakingRewards');
-const allocation = require('../allocation/utils.js');
+const allocation = require('../../allocation/utils.js');
 const { toWei } = web3.utils;
 
 
@@ -15,9 +15,10 @@ BigNumber.config({
 
 module.exports = async function(callback) {
 
-  const StakingRewards = await staking.at(contracts.kovan.StakingRewards);
-
   try {
+
+    const StakingRewards = await staking.at(contracts.kovan.StakingRewards);
+
     let parsedAddresses = [];
     let rewardsByAddress = [];
     let forBal = [];
@@ -48,21 +49,20 @@ module.exports = async function(callback) {
 
     /* get all addresses that have staked */
     rewardsByAddress = await allocation.writeToArray(staked);
-    console.log(JSON.stringify(rewardsByAddress))
 
     /* add rewarded amounts for addresses */
     forBal = await allocation.addRewards(rewards, rewardsByAddress);
-    console.log('\ntotal rewards by account:');
+    console.log('\nPRIME rewards by account:');
     allocation.logAmounts(forBal);
 
     /* work out as % of sum of paid out rewards -> write array for each with BAL % for MerkleDrop */
-    console.log('\n' + 'writing BAL allocation... ');
+    console.log('\n' + 'calculating BAL allocation... \n');
     balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
-    fs.writeFileSync('./BalAllocation.json', JSON.stringify(balAllocation), (err) => {
+    await fs.writeFileSync('./allocation/BalAllocation.json', JSON.stringify(balAllocation), (err) => {
         if (err) throw err;
     });
-    console.log('\n...BAL allocation written to "BalAllocation.json"');
+    console.log('...BAL allocation written to "./allocation/BalAllocation.json"');
 
   } catch(error) {
 
