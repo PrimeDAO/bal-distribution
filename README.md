@@ -1,4 +1,4 @@
-# PrimeDAO incentives around BAL distribution
+<h1 align="center">PrimeDAO BAL distribution</h1>
 
 > Scripts and smart contracts for the PrimeDAO BAL distribution following the close Prime's first Liquidity Mining program.
 
@@ -81,4 +81,18 @@ npm run create-merkleroot
 - Seed allocations for the computed tranche
 ```
 npm run seed-allocations:mainnet
+```
+
+## Contributing to PrimeDAO
+If you wish to contribute to PrimeDAO, check out our [Contributor Onboarding documentation](https://docs.primedao.io/primedao/call-for-contributors).
+
+## License
+```
+Copyright 2020 Prime Foundation
+
+Licensed under the GNU General Public License v3.0.
+You may obtain a copy of this license at:
+
+  https://www.gnu.org/licenses/gpl-3.0.en.html
+
 ```
