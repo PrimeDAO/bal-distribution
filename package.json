@@ -1,8 +1,8 @@
 {
-  "name": "@mstable/merkle-drop",
+  "name": "@primedao/bal-allocation",
   "version": "1.0.0",
-  "description": "Merkle Drop",
-  "author": "mStable <info@mstable.org>",
+  "description": "",
+  "author": "",
   "license": "AGPL-3.0-or-later",
   "files": [
     "/contracts/**/*.sol",
@@ -38,10 +38,6 @@
     "seed-allocations:mainnet": "npx truffle exec ./scripts/mainnet/seed-allocations.js --network mainnet",
     "create-proof": "npx ts-node ./merklescripts/create-proof.ts",
     "claim:kovan": "npx truffle exec ./scripts/kovan/claim-kovan.js --network kovan"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mstable/mstable-contracts.git"
   },
   "devDependencies": {
     "@mstable/protocol": "^1.1.2",
