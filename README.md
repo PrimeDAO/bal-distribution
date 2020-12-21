@@ -1,4 +1,4 @@
-# PrimeDAO incentives round BAL distribution
+# PrimeDAO incentives around BAL distribution
 
 > Scripts and smart contracts for the PrimeDAO BAL distribution following the close Prime's first Liquidity Mining program.
 
