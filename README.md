@@ -4,7 +4,7 @@
 
 During PrimeDAO's first [Liquidity Mining program](https://medium.com/primedao/primes-first-liquidity-mining-program-b8e4abb6c63), Liquidity Providers have been accruing BAL. Due to the architecture of the smart contracts, this BAL was not automatically distributed to Liquidity Providers, and instead has accrued in the `StakingRewards` contract itself.
 
-This repository is a set of scripts and a fork of mStable's merkledrop[LINK] contract with which the amount of BAL accrued by each LP will be computed and a claim mechanism set up.
+This repository is a set of scripts and a fork of mStable's [MerkleDrop](https://github.com/mstable/merkle-drop) contract with which the amount of BAL accrued by each LP will be computed and a claim mechanism set up.
 
 For a step-by-step user guide to claiming your BAL, please see our documentation [LINK].
 
