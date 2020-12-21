@@ -1,98 +1,84 @@
 # PrimeDAO incentives round BAL distribution
 
-This repo is for the BAL distribution following the close of the PrimeDAO incubation round rewards round.
+> Scripts and smart contracts for the PrimeDAO BAL distribution following the close Prime's first Liquidity Mining program.
 
-It is comprised of scripts built atop the MStable MerkleDrop repo. These can be found in:
+During PrimeDAO's first [Liquidity Mining program](https://medium.com/primedao/primes-first-liquidity-mining-program-b8e4abb6c63), Liquidity Providers have been accruing BAL. Due to the architecture of the smart contracts, this BAL was not automatically distributed to Liquidity Providers, and instead has accrued in the `StakingRewards` contract itself.
 
-- `/allocation/`
-- `/scripts/`
-- `/merklescripts/`
+This repository is a set of scripts and a fork of mStable's merkledrop[LINK] contract with which the amount of BAL accrued by each LP will be computed and a claim mechanism set up.
 
-These scripts calculate BAL allocation according to the same logic as MStable: the % of reward earned == the % of the total BAL allocation.
+For a step-by-step user guide to claiming your BAL, please see our documentation [LINK].
 
-Users will have had to withdraw their rewards prior to the BAL distribution.
+- Functions in `/allocation/utils.js` are used to compute the amount of BAL owed to each Liquidity Provider.
+- Scripts in `/scripts/kovan` are used for initializing and testing against a deployed instance of the MerkleDrop contract on Kovan.
+- `/merklscripts/` contains scripts for creating the MerkleRoot containing the claims for each Liquidity Provider to be seeded in the MerkleDrop contract.
+- `MerkleDrop.sol` is a fork of mStable's MerkleDrop contract, slightly adjusted to suit PrimeDAO's needs:
+  - Functionality for claiming for multiple tranches (periods) has been removed, as only one tranche can be claimed for (the period of the Liquidity Mining program).
 
+**⚠ Users will need to withdraw their PRIME rewards from the liquidity mining contract by January 7th, 2021 in order to receive Balancer Pool tokens.**
 
-USERS:
-- navigate to list of accounts and claim amounts saved as `./user-claims.json` (n.b. this needs to be hosted on IPFS)
-- Go to the contract on etherscan (see `./contractAddresses.json` for deployed contract address).
-- claim with the provided address, amount, and merkleproof information, entering '0' as the tranche
-- *if users wish to create their own proof, simply replace the [ 'address' ] on line 102 of `create-proof.ts` and 107 & run `npm run create-proof`. The proof will be logged in the cli and written to `merkleproof.json` in the root directory* <--- change this to using config file
-- to claim via cli, run `npm run claim:kovan` after adding details to `scripts/claim-kovan.js` & creating an .env for the infura hookup
+## Setting up
+Install dependencies
+```
+yarn install
+```
 
+Run tests
+```
+yarn test
+```
 
-DEV:
-- package.json includes scripts for deployment to mainnet, kovan, and ropsten. N.B. remember to update the `contratAddresses.json` file with the new addresses.
+## Deploy and prepare claims: Kovan
+- Create a .env file containing `NETWORK`, `PROVIDER`, `KEY`, `ACCOUNT` & `BAL` parameters
 
-- *If deploying the contracts yourself for testing initialize the MerkleDrop contract first:*
+- Migrate contracts
+```
+npm run migrate:kovan
+```
+
+- Initialize Merkledrop
 ```
 npm run init-merkledrop:kovan
 ```
 
-- To calculate the amount of BAL per account for deployed `StakingRewards` contract on Kovan (stakingrewards @ `0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3`):
-
-Create a `.env` file containing `NETWORK`, `PROVIDER`, `KEY` and `ACCOUNT` parameters & run:
+- Calculate BAL allocation
 ```
 npm run calc-bal:kovan
 ```
 
-Copy the contents of the array saved in `BalAllocation.json` into `getTranche()` line 85 `create-merkleroot.ts` & line 37 `create-proof.ts`. As this drop will only be run once, `tranche` is hardcoded as 0.
-
-Create a merkleroot for seeding new allocations in the contract, and also creating the list of accounts, balances to claim, and merkleproofs saved at `./user-claims` to be uploaded to IPFS (*claims are expressed in wei*):
+- Copy the contents of the array saved in `/allocation/BalAllocation.json` into `getTranche()` in `/merklescripts/create-merkleroot.ts` and create the merkleroot for the computed tranche
 ```
 npm run create-merkleroot
 ```
-seed allocations for the computed tranche:
+
+- Seed allocations for the computed tranche
 ```
 npm run seed-allocations:kovan
 ```
 
-### to do:
-  - kovan deployer script -> write to contratAddresses.json
-  - mainnet deployer script -> write to contratAddresses.json
-  - deploy Merkledrop to mainnet & verify
-  - README tidyup
+## Deploy and prepare claims: Mainnet
+- Create a .env file containing `NETWORK`, `PROVIDER`, `KEY`, `ACCOUNT` & `BAL` parameters
 
+- Migrate contracts
+```
+npm run migrate:mainnet
+```
 
+- Initialize Merkledrop
+```
+npm run init-merkledrop:mainnet
+```
 
-# Merkle-drop
+- Calculate BAL allocation
+```
+npm run calc-bal:mainnet
+```
 
-A lightweight Merkle Drop contract
+- Copy the contents of the array saved in `/allocation/BalAllocationMainnet.json` into `getTranche()` in `/merklescripts/create-merkleroot.ts` and create the merkleroot for the computed tranche
+```
+npm run create-merkleroot
+```
 
-## Prerequisites
-
-* [Node.js][1]
-
-## Installation
-
-    yarn install
-
-## Testing
-
-    yarn test
-
-## Deployment
-
-### Local deployment
-
-Start an instance of `ganache-cli`
-
-    ganache-cli -p 7545 -l 8000000
-
-Run the migration
-
-    yarn migrate
-
-### Rinkeby / Kovan
-
-Edit `truffle-config.js`, and add a mnemonic for the `HDWalletProvider` for a private key that is funded.
-
-#### Deploy to Kovan
-
-    yarn migrate:kovan
-
-#### Deploy to Ropsten
-
-    yarn migrate:Ropsten
-
-[1]: https://nodejs.org/
+- Seed allocations for the computed tranche
+```
+npm run seed-allocations:mainnet
+```

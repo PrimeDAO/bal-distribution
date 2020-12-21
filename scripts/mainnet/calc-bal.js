@@ -58,10 +58,10 @@ module.exports = async function(callback) {
     console.log('\n' + 'calculating BAL allocation... \n');
     balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
-    await fs.writeFileSync('./allocation/BalAllocation.json', JSON.stringify(balAllocation), (err) => {
+    await fs.writeFileSync('./allocation/BalAllocationMainnet.json', JSON.stringify(balAllocation), (err) => {
         if (err) throw err;
     });
-    console.log('...BAL allocation written to "./allocation/BalAllocation.json"');
+    console.log('...BAL allocation written to "./allocation/BalAllocationMainnet.json"');
 
   } catch(error) {
 
