@@ -1,12 +1,1 @@
-{
-  "kovan":{
-    "StakingRewards":"0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3",
-    "MerkleDrop": "0xD2Ff57c155dbBB9A856AB79D0a144253238Bf7aB",
-    "TToken": "0x5A73e4857f2e5e7c9701f8a67e812bFced0A0d01"
-  },
-  "mainnet":{
-      "StakingRewards":"0xE25faBF901Be98099b0FD8C8b3827A4c69F909E4",
-      "MerkleDrop": "",
-      "BAL": ""
-  }
-}
+{"kovan":{"StakingRewards":"0xC5DB682Aeb48eF1dbF195E39C68A88E9D9d818a3","MerkleDrop":"0xD1f3d3fe83AC123f34A11784645d773b9bd12382","TToken":"0x1eCcD5A30f0258cD26F85e688D6c0164B0D7474f"},"mainnet":{"StakingRewards":"0xE25faBF901Be98099b0FD8C8b3827A4c69F909E4","MerkleDrop":"","BAL":""}}
