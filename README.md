@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://i.ibb.co/6DBm381/photo-2020-12-21-12-27-29.jpg" width="500" height="300" />
+</p>
+
 <h1 align="center">PrimeDAO BAL distribution</h1>
 
 > Scripts and smart contracts for the PrimeDAO BAL distribution following the close Prime's first Liquidity Mining program.
