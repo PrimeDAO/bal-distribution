@@ -1,0 +1,8 @@
+{
+  "kovan":{
+    "BALAmount":"1000000"
+  },
+  "mainnet":{
+      "BALAmount":""
+  }
+}

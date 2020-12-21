@@ -1,6 +1,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const BigNumber = require('bignumber.js');
+const config = require('../../contract-config.json');
 const contracts = require('../../contractAddresses');
 const staking = artifacts.require('StakingRewards');
 const allocation = require('../../allocation/utils.js');
@@ -29,10 +30,10 @@ module.exports = async function(callback) {
     let prev = now - BigNumber(60*60*24*30); // now - 1 month
 
     /* Reward & BAL total for testing */
-    const BAL = BigNumber(process.env.BAL);
+    const BAL = BigNumber(config.kovan.BALAmount);
     console.log('BAL: ' + BAL.toString());
     const RewardAmount = BigNumber(await StakingRewards.initreward());
-    // console.log('reward amount: ' + RewardAmount);
+    console.log('reward amount: ' + RewardAmount);
 
     let staked = await StakingRewards.getPastEvents('Staked', {
         fromBlock: prev,

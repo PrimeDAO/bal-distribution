@@ -1,6 +1,7 @@
 require('dotenv').config();
 const fs = require('fs');
 const BigNumber = require('bignumber.js');
+const config = require('../../contract-config.json');
 const contracts = require('../../contractAddresses');
 const staking = artifacts.require('StakingRewards');
 const allocation = require('../../allocation/utils.js');
@@ -25,10 +26,10 @@ module.exports = async function(callback) {
     let balAllocation = [];
 
     let now = await web3.eth.getBlockNumber();
-    // let prev = now - //
+    let prev = now - //
 
     /* Reward & BAL total for testing */
-    const BAL = BigNumber(process.env.BAL);
+    const BAL = BigNumber(config.mainnet.BALAmount);
     console.log('BAL: ' + BAL.toString());
     const RewardAmount = BigNumber(await StakingRewards.initreward());
 

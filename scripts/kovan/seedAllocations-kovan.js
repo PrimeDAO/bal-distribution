@@ -1,5 +1,6 @@
 require('dotenv').config();
 const BigNumber = require('bignumber.js');
+const config = require('../../contract-config.json');
 const contracts = require('../../contractAddresses');
 const merkleroot = require('../../merklescripts/merkleroot');
 const merkledrop = artifacts.require('MerkleDrop');
@@ -14,8 +15,8 @@ module.exports = async function(callback) {
     const MerkleDropKovan = await merkledrop.at(contracts.kovan.MerkleDrop);
     const TToken = await ttoken.at(contracts.kovan.TToken);
 
-    let balAmount = toWei((process.env.BAL).toString());
-    console.log('BAL to seed: ' + process.env.BAL);
+    let balAmount = toWei((config.kovan.BALAmount).toString());
+    console.log('BAL to seed: ' + config.kovan.BALAmount);
     let account = process.env.ACCOUNT;
 
     console.log('transferring kovan BAL to merkledrop funding account...');

@@ -32,7 +32,7 @@ yarn test
 ```
 
 ## Deploy and prepare claims: Kovan
-- Create a .env file containing `NETWORK`, `PROVIDER`, `KEY`, `ACCOUNT` & `BAL` parameters
+- Create a .env file containing `NETWORK`, `PROVIDER`, `KEY`, & `ACCOUNT` parameters
 
 - Migrate contracts
 ```

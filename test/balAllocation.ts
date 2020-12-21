@@ -5,6 +5,7 @@ const chai = require('chai');
 import { expect } from 'chai';
 const { constants, time, expectRevert, expectEvent } = require('@openzeppelin/test-helpers');
 const allocation = require('../allocation/utils.js');
+const config = require('../contract-config.json');
 const contracts = require('../contractAddresses');
 const BigNumber = require('bignumber.js');
 const fs = require('fs');
@@ -39,7 +40,7 @@ contract('BAL allocation', (accounts) => {
   let balAllocation;
 
   let rewards;
-  const BAL = BigNumber(process.env.BAL);
+  const BAL = BigNumber(config.kovan.BALAmount);
 
   before('!! deploy and setup', async () => {
      stakingRewards = await StakingRewards.new();
