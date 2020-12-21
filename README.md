@@ -10,7 +10,7 @@ During PrimeDAO's first [Liquidity Mining program](https://medium.com/primedao/p
 
 This repository is a set of scripts and a fork of mStable's [MerkleDrop](https://github.com/mstable/merkle-drop) contract with which the amount of BAL accrued by each LP will be computed and a claim mechanism set up.
 
-For a step-by-step user guide to claiming your BAL, please see our documentation [LINK].
+For a step-by-step user guide to claiming your BAL, please see our [documentation](https://medium.com/primedao/claim-your-liquidity-rewards-to-receive-your-balancer-tokens-a865c2a529f7).
 
 - Functions in `/allocation/utils.js` are used to compute the amount of BAL owed to each Liquidity Provider.
 - Scripts in `/scripts/kovan` are used for initializing and testing against a deployed instance of the MerkleDrop contract on Kovan.
