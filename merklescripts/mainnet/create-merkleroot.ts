@@ -1,11 +1,11 @@
-import {TrancheBalances} from '../test/types'
+import {TrancheBalances} from '../../test/types'
 import {
   createTreeWithAccounts,
   getAccountBalanceProof,
   MerkleTree,
-} from '../test/utils/merkleTree'
-import { simpleToExactAmount } from '../test/utils/math'
-import { allocation } from '../allocation/balArray'
+} from '../../test/utils/merkleTree'
+import { simpleToExactAmount } from '../../test/utils/math'
+import { allocation } from '../../allocation/mainnet/balArray'
 import BN from 'bn.js'
 import fs from 'fs'
 
@@ -98,7 +98,7 @@ async function makeTree() {
   await setup(TRANCHES.unclaimed)
   console.log('merkleroot: ' + merkleroot);
 
-  fs.writeFile('./merklescripts/merkleroot.json', JSON.stringify(merkleroot), (err) => {
+  fs.writeFile('./merklescripts/mainnet/merkleroot.json', JSON.stringify(merkleroot), (err) => {
       if (err) throw err;
   });
 }
@@ -127,10 +127,10 @@ async function writeProofs() {
     }
     forIPFS.push(obj)
   }
-  fs.writeFile('./user-claims', JSON.stringify(forIPFS), (err) => {
+  fs.writeFile('./user-claims-mainnet.json', JSON.stringify(forIPFS), (err) => {
       if (err) throw err;
   });
-  console.log('...claims saved as `user-claims.json`');
+  console.log('...claims saved as `user-claims-mainnet.json`');
 }
 
 async function main(){

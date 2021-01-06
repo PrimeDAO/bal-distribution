@@ -49,9 +49,9 @@ npm run init-merkledrop:kovan
 npm run calc-bal:kovan
 ```
 
-- Copy the contents of the array saved in `/allocation/BalAllocation.json` into `getTranche()` in `/merklescripts/create-merkleroot.ts` and create the merkleroot for the computed tranche
+- Copy the contents of the array saved in `/allocation/kovan/BalAllocation.json` into `getTranche()` in `/merklescripts/kovan/create-merkleroot.ts` and create the merkleroot for the computed tranche
 ```
-npm run create-merkleroot
+npm run create-merkleroot:kovan
 ```
 
 - Seed allocations for the computed tranche
@@ -77,9 +77,9 @@ npm run init-merkledrop:mainnet
 npm run calc-bal:mainnet
 ```
 
-- Copy the contents of the array saved in `/allocation/BalAllocationMainnet.json` into `getTranche()` in `/merklescripts/create-merkleroot.ts` and create the merkleroot for the computed tranche
+- Copy the contents of the array saved in `/allocation/mainnet/BalAllocationMainnet.json` into `getTranche()` in `/merklescripts/mainnet/create-merkleroot.ts` and create the merkleroot for the computed tranche
 ```
-npm run create-merkleroot
+npm run create-merkleroot:mainnet
 ```
 
 - Seed allocations for the computed tranche

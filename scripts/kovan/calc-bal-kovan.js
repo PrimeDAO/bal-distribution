@@ -31,9 +31,9 @@ module.exports = async function(callback) {
 
     /* Reward & BAL total for testing */
     const BAL = BigNumber(config.kovan.BALAmount);
-    console.log('BAL: ' + BAL.toString());
+    console.log('BAL to allocate: ' + BAL.toString());
     const RewardAmount = BigNumber(await StakingRewards.initreward());
-    console.log('reward amount: ' + RewardAmount);
+    // console.log('reward amount: ' + RewardAmount);
 
     let staked = await StakingRewards.getPastEvents('Staked', {
         fromBlock: prev,
@@ -58,13 +58,13 @@ module.exports = async function(callback) {
     allocation.logAmounts(forBal);
 
     /* work out as % of sum of paid out rewards -> write array for each with BAL % for MerkleDrop */
-    console.log('\n' + 'calculating BAL allocation... \n');
+    console.log('\n' + 'calculating BAL allocation...');
     balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
-    await fs.writeFileSync('./allocation/BalAllocation.json', JSON.stringify(balAllocation), (err) => {
+    await fs.writeFileSync('./allocation/kovan/BalAllocation.json', JSON.stringify(balAllocation), (err) => {
         if (err) throw err;
     });
-    console.log('...BAL allocation written to "./allocation/BalAllocation.json"');
+    console.log('...BAL allocation written to "./allocation/kovan/BalAllocation.json"');
 
   } catch(error) {
 

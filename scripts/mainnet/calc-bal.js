@@ -28,7 +28,7 @@ module.exports = async function(callback) {
     let now = await web3.eth.getBlockNumber();
     let prev = now - //
 
-    /* Reward & BAL total for testing */
+    /* Reward & BAL total */
     const BAL = BigNumber(config.mainnet.BALAmount);
     console.log('BAL: ' + BAL.toString());
     const RewardAmount = BigNumber(await StakingRewards.initreward());
@@ -56,13 +56,13 @@ module.exports = async function(callback) {
     allocation.logAmounts(forBal);
 
     /* work out as % of sum of paid out rewards -> write array for each with BAL % for MerkleDrop */
-    console.log('\n' + 'calculating BAL allocation... \n');
+    console.log('\n' + 'calculating BAL allocation...');
     balAllocation = await allocation.writeBALAllocation(forBal, BAL);
 
-    await fs.writeFileSync('./allocation/BalAllocationMainnet.json', JSON.stringify(balAllocation), (err) => {
+    await fs.writeFileSync('./allocation/mainnet/BalAllocationMainnet.json', JSON.stringify(balAllocation), (err) => {
         if (err) throw err;
     });
-    console.log('...BAL allocation written to "./allocation/BalAllocationMainnet.json"');
+    console.log('...BAL allocation written to "./allocation/mainnet/BalAllocationMainnet.json"');
 
   } catch(error) {
 

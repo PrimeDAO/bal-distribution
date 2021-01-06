@@ -72,22 +72,25 @@ async function writeBALAllocation(addressArray, totalBAL){
   }
   for(j=0; j<addressArray.length; j++){
       /* what % is it of rewardTotal */
-      // console.log('total PRIME earned by ' + addressArray[j][0] + ': ' + (addressArray[j][1]).toString());
       let rewardOver100 = rewardAmount.dividedBy(100);
       let rewardPercentage = BigNumber(addressArray[j][1]).dividedBy(rewardOver100);
-      // console.log('PRIME reward percentage for ' + addressArray[j][0] + ': ' + rewardPercentage.toString() + '%');
       /* what is this as a % of total BAL */
       let balOver100 = totalBAL.dividedBy(100);
-      // let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100).toFixed(0);
       let balReward = BigNumber(rewardPercentage).multipliedBy(balOver100);
-      // console.log('BAL reward: ' + balReward.toString() + '\n')
 
       /* push BAL allocation to array */
       let arr = [
         addressArray[j][0],
         BigNumber(balReward)
       ]
-      balAllocation.push(arr)
+
+      if(balReward.toNumber() === 0){
+        console.log(addressArray[j][0] + ' did not remove rewards: not adding to BAL distribution')
+      } else {
+        console.log(addressArray[j][0] + ' can claim BAL')
+        balAllocation.push(arr)
+      }
+
   }
   return balAllocation;
 }

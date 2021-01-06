@@ -31,13 +31,13 @@
     "flatten": "sol-merger \"./contracts/**/*.sol\" ./_flat",
     "calc-bal:kovan": "npx truffle exec ./scripts/kovan/calc-bal-kovan.js --network kovan",
     "init-merkledrop:kovan": "npx truffle exec ./scripts/kovan/init-merkledrop-kovan.js --network kovan",
-    "create-merkleroot": "npx ts-node ./merklescripts/create-merkleroot.ts",
+    "create-merkleroot:kovan": "npx ts-node ./merklescripts/kovan/create-merkleroot.ts",
     "seed-allocations:kovan": "npx truffle exec ./scripts/kovan/seedAllocations-kovan.js --network kovan",
+    "claim:kovan": "npx truffle exec ./scripts/kovan/claim-kovan.js --network kovan",
     "calc-bal:mainnet": "npx truffle exec ./scripts/mainnet/calc-bal.js --network mainnet",
+    "create-merkleroot:mainnet": "npx ts-node ./merklescripts/mainnet/create-merkleroot.ts",
     "initalize-merkledrop:mainnet": "npx truffle exec ./scripts/mainnet/initalize-merkledrop.js --network mainnet",
-    "seed-allocations:mainnet": "npx truffle exec ./scripts/mainnet/seed-allocations.js --network mainnet",
-    "create-proof": "npx ts-node ./merklescripts/create-proof.ts",
-    "claim:kovan": "npx truffle exec ./scripts/kovan/claim-kovan.js --network kovan"
+    "seed-allocations:mainnet": "npx truffle exec ./scripts/mainnet/seed-allocations.js --network mainnet"
   },
   "devDependencies": {
     "@mstable/protocol": "^1.1.2",
