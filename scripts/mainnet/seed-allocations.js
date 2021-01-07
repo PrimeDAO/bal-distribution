@@ -2,9 +2,8 @@ require('dotenv').config();
 const BigNumber = require('bignumber.js');
 const config = require('../../contract-config.json');
 const contracts = require('../../contractAddresses');
-const merkleroot = require('../../merklescripts/merkleroot');
+const merkleroot = require('../../merklescripts/mainnet/merkleroot');
 const merkledrop = artifacts.require('MerkleDrop');
-const bal = artifacts.require('BAL');
 const { toWei } = web3.utils;
 
 
@@ -12,16 +11,15 @@ module.exports = async function(callback) {
 
   try {
 
+    /* approve BAL transfer via etherscan interface */
+
     const MerkleDropKovan = await merkledrop.at(contracts.mainnet.MerkleDrop);
-    const BAL = await bal.at(contracts.mainnet.BAL);
 
     let balAmount = toWei((config.mainnet.BALAmount).toString());
     console.log('BAL to seed: ' + config.mainnet.BALAmount);
     let account = process.env.ACCOUNT;
 
-    console.log('\napproving for transfer to contract...');
-    await BAL.approve(MerkleDropKovan.address, balAmount);
-    console.log('...approval complete \nseeding new allocations...');
+    console.log('seeding new allocations...');
     await MerkleDropKovan.seedNewAllocations(merkleroot, balAmount);
     console.log('...seeding complete: merkledrop ready for claims')
 

@@ -8,7 +8,7 @@ import { simpleToExactAmount } from '../test/utils/math'
 BigNumber.config({
     EXPONENTIAL_AT: [-100, 100],
     ROUNDING_MODE: BigNumber.ROUND_DOWN,
-    DECIMALS: 0
+    DECIMALS: 18
 });
 
 async function writeToArray(events){
@@ -81,7 +81,7 @@ async function writeBALAllocation(addressArray, totalBAL){
       /* push BAL allocation to array */
       let arr = [
         addressArray[j][0],
-        BigNumber(balReward)
+        BigNumber(balReward).toFixed(18)
       ]
 
       if(balReward.toNumber() === 0){

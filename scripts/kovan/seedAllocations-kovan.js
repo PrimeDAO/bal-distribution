@@ -2,7 +2,7 @@ require('dotenv').config();
 const BigNumber = require('bignumber.js');
 const config = require('../../contract-config.json');
 const contracts = require('../../contractAddresses');
-const merkleroot = require('../../merklescripts/merkleroot');
+const merkleroot = require('../../merklescripts/kovan/merkleroot');
 const merkledrop = artifacts.require('MerkleDrop');
 const ttoken = artifacts.require('TToken');
 const { toWei } = web3.utils;

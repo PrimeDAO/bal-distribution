@@ -20,16 +20,9 @@ module.exports = {
             timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
             skipDryRun: false     // Skip dry run before migrations? (default: false for public nets )
       },
-      rinkeby: {
-          provider: function() {
-              return new HDWalletProvider(process.env.KEY, process.env.PROVIDER);
-          },
-          network_id: 4,
-          networkCheckTimeout: 100000000
-      },
       kovan: {
           provider: function() {
-              return new HDWalletProvider(process.env.KEY, process.env.PROVIDER);
+              return new HDWalletProvider(process.env.KEY, process.env.KOVANPROVIDER);
           },
           network_id: 42,
           networkCheckTimeout: 100000000
