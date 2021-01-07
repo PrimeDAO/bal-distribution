@@ -26,7 +26,6 @@ module.exports = async function(callback) {
     let balAllocation = [];
 
     let now = await web3.eth.getBlockNumber();
-    let prev = now - //
 
     /* Reward & BAL total */
     const BAL = BigNumber(config.mainnet.BALAmount);
@@ -34,12 +33,12 @@ module.exports = async function(callback) {
     const RewardAmount = BigNumber(await StakingRewards.initreward());
 
     let staked = await StakingRewards.getPastEvents('Staked', {
-        fromBlock: prev,
+        fromBlock: 11271944,
         toBlock: now
     });
 
     let rewards = await StakingRewards.getPastEvents('RewardPaid', {
-        fromBlock: prev,
+        fromBlock: 11271944,
         toBlock: now
     });
 

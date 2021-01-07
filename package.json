@@ -36,7 +36,7 @@
     "claim:kovan": "npx truffle exec ./scripts/kovan/claim-kovan.js --network kovan",
     "calc-bal:mainnet": "npx truffle exec ./scripts/mainnet/calc-bal.js --network mainnet",
     "create-merkleroot:mainnet": "npx ts-node ./merklescripts/mainnet/create-merkleroot.ts",
-    "initalize-merkledrop:mainnet": "npx truffle exec ./scripts/mainnet/initalize-merkledrop.js --network mainnet",
+    "init-merkledrop:mainnet": "npx truffle exec ./scripts/mainnet/init-merkledrop.js --network mainnet",
     "seed-allocations:mainnet": "npx truffle exec ./scripts/mainnet/seed-allocations.js --network mainnet"
   },
   "devDependencies": {

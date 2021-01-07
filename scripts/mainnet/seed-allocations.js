@@ -13,14 +13,14 @@ module.exports = async function(callback) {
 
     /* approve BAL transfer via etherscan interface */
 
-    const MerkleDropKovan = await merkledrop.at(contracts.mainnet.MerkleDrop);
+    const MerkleDropMainnet = await merkledrop.at(contracts.mainnet.MerkleDrop);
 
     let balAmount = toWei((config.mainnet.BALAmount).toString());
     console.log('BAL to seed: ' + config.mainnet.BALAmount);
     let account = process.env.ACCOUNT;
 
     console.log('seeding new allocations...');
-    await MerkleDropKovan.seedNewAllocations(merkleroot, balAmount);
+    await MerkleDropMainnet.seedNewAllocations(merkleroot, balAmount);
     console.log('...seeding complete: merkledrop ready for claims')
 
   } catch(error) {

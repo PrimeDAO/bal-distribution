@@ -12,6 +12,8 @@ This repository is a set of scripts and a fork of mStable's [MerkleDrop](https:/
 
 For a step-by-step user guide to claiming your BAL, please see our [documentation](https://medium.com/primedao/claim-your-liquidity-rewards-to-receive-your-balancer-tokens-a865c2a529f7).
 
+Claimant addresses and amounts can be found in `./user-claims-mainnet.txt`, and the MerkleDrop is deployed on mainnet at `0x05965f62E3B5e7f89015F079CAB33c2e8cB638e6`. Addresses for all contracts can be found in `./contractAddresses.json`
+
 - Functions in `/allocation/utils.js` are used to compute the amount of BAL owed to each Liquidity Provider.
 - Scripts in `/scripts/kovan` are used for initializing and testing against a deployed instance of the MerkleDrop contract on Kovan.
 - `/merklscripts/` contains scripts for creating the MerkleRoot containing the claims for each Liquidity Provider to be seeded in the MerkleDrop contract.

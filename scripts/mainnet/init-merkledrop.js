@@ -9,10 +9,9 @@ module.exports = async function(callback) {
   try {
 
     const MerkleDropKovan = await merkledrop.at(contracts.mainnet.MerkleDrop);
-    const BAL = await ttoken.at(contracts.mainnet.BAL);
 
     console.log('initializing merkledrop...');
-    await MerkleDropKovan.initialize(process.env.ACCOUNT, [process.env.ACCOUNT], BAL.address);
+    await MerkleDropKovan.initialize(process.env.ACCOUNT, [process.env.ACCOUNT], contracts.mainnet.BAL);
     console.log('...contract initialized');
 
   } catch(error) {

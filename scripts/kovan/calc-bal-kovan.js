@@ -36,12 +36,12 @@ module.exports = async function(callback) {
     // console.log('reward amount: ' + RewardAmount);
 
     let staked = await StakingRewards.getPastEvents('Staked', {
-        fromBlock: prev,
+        fromBlock: 11271944,
         toBlock: now
     });
 
     let rewards = await StakingRewards.getPastEvents('RewardPaid', {
-        fromBlock: prev,
+        fromBlock: 11271944,
         toBlock: now
     });
 
